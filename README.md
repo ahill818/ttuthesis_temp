@@ -5,12 +5,16 @@ Adapted template provided by online distribution from Statistics
 department. 
 
 Required files:
-Bibliography style (e.g. ametsoc.bst) \n
-Fancy Header format (fancyhdr.sty) \n
-Spacing formats (setspace.sty) \n
-Style template (e.g. ttuthes2014.cls)
+Bibliography style  (e.g. ametsoc.bst) 
+Fancy Header format (fancyhdr.sty)
+Spacing format      (setspace.sty) 
+Style template      (e.g. ttuthes2014.cls)
 
 Provided Examples:
-Thesis Template (thesis_template.tex)
-Bibliography (thesis.bib)
+Thesis Template   (thesis_template.tex)
+Bibliography file (thesis.bib)
+Example PDF       (example.pdf)
+
+Files produced when compiling:
+Anything ending in .aux,.bbl,.blg,.dvi,.lof,.log,.synctex.gz,.toc
 
