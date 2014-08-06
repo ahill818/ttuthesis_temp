@@ -5,9 +5,9 @@ Adapted template provided by online distribution from Statistics
 department. 
 
 Required files:
-Bibliography style (e.g. ametsoc.bst)
-Fancy Header format (fancyhdr.sty)
-Spacing formats (setspace.sty)
+Bibliography style (e.g. ametsoc.bst) \n
+Fancy Header format (fancyhdr.sty) \n
+Spacing formats (setspace.sty) \n
 Style template (e.g. ttuthes2014.cls)
 
 Provided Examples:
