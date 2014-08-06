@@ -1,0 +1,1128 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%This documentclass loads the packages  %
+%            setspace                   %
+% and                                   %
+%           fancyhdr.                   %
+%You may have to                        %
+%get these if your TeX distribution     %
+%doesn't have them.                     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{ttuthes2007}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Include any other add-on  packages you need:%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath,amssymb,amsthm,graphicx}
+\usepackage{natbib}	       % use for citing notation
+\usepackage[nottoc,numbib]{tocbibind}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%EDIT  (Running head--  REQUIRED)%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\rhead{Texas Tech University, \emph{Aaron J. Hill}, \emph{June 2014}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Uncomment if the grad school doesn't like the%
+%line under the  running head:                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\headrulewidth}{0pt}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Spacing -- Do you want double or one-and-a-half?%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\doublespacing
+%\onehalfspacing
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Leave the one you want uncommented.                        %
+%In places where single-line-spacing is appropriate         %
+%e.g, extended quotations, you can enclose the material     %
+%in a singlespacing environment (with \begin{singlespacing} %
+% ...  \end{singlespacing}                                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Other preamble stuff, e.g., theorem environments%
+%or newcommands go here:                         %
+% e.g.                                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newtheorem{theorem}{Theorem}
+% \newtheorem{proposition}[theorem]{proposition}
+% \newtheorem{question}{Question}
+% \newtheorem{conjecture}{Conjecture}
+\newcommand{\tab}{\hspace*{2em}}  % tabbing
+
+\bibliographystyle{ametsoc}   % use american meteorological society bibliography style
+\bibpunct{(}{)}{;}{a}{}{,}   % set punctuation for citing articles, books, etc.
+
+\begin{document}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%TITLE PAGE -- Edit the spacing commands after each \\ %
+% if necessary                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{titlepage}
+\vbox to  \textheight{
+\begin{singlespacing}
+\begin{center}
+Mesoscale Data Assimilation and Ensemble Sensitivity Analysis Towards Improved Predictability of Dryline Convection \\[12pt]  %Edit
+by\\[12pt]
+Aaron J. Hill, B.S.\\[12pt]   %Edit
+A Thesis\\[12pt]   % or Thesis
+In\\[12pt]
+Atmospheric Science\\[12pt]
+Submitted to the Graduate Faculty\\
+of Texas Tech University in\\
+Partial Fulfillment of\\
+the Requirements for\\
+the Degree of\\[12pt]
+MASTERS OF SCIENCES\\[12pt]  %Edit
+Approved\\[12pt]
+Dr. Christopher Weiss\\ %Edit
+Committee Chair\\[12pt]
+Dr. Brian Ancell\\[12pt] %Edit
+Dr. John Schroeder\\[12pt] %Edit
+Mark Sheridan\\ %Edit
+Dean of the Graduate School\\[12pt]
+August, 2014      %Edit
+\end{center}
+\end{singlespacing}
+\vfill}
+\end{titlepage}
+%%%%%%%%%%%%%%%%%%%
+%End of title page%
+%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Copyright page -- delete or comment out if not needed%
+%usage: \copyrightpage{year of appearance}{Name}      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\copyrightpage{2014}{Aaron J. Hill} %Name should be same as on
+%title page
+%%%%%%%%%%%%%%%%%%%%%%%%
+%\end of copyright page%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%Start of frontmatter %
+%You need this:       %
+%%%%%%%%%%%%%%%%%%%%%%%
+\frontmatter     % does the numbering and makes new pages
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Acknowledgements           %
+%Comment out or delete      %
+%if not  wanted             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Acknowledgements}
+
+\tab First and foremost, I would like to thank God for his beautiful creation and what a blessing it has been to study it. I would like to acknowledge my advisors Drs. Chris Weiss and Brian Ancell for their guidance, support, and motivation to begin this research project. Even when problems arose or results weren't promising, they were always there to provide another view and motivate me to face the problem head on, providing the encouragement I needed. Recognition is also due to Dr. John Scroeder, for serving on my committee and providing me with the opportunity to be involved with StickNet field projects. \\
+
+\tab I also recognize the support of the entire Texas Tech Atmospheric Science Group, specifically Tony Reinhart, Chris Bednarcyzk, and Nick Smith, for immense help with computing, discussing research, and overall challenging me to become a better researcher. \\
+
+\tab I would like to thank my Mom, for raising me to become the man I am today, pushing me to study hard and follow my passions, supporting me in my pursuit of this degree, and loving me unconditionally. 
+
+\tab I would be remiss to not include Bob Houze and Kristen Rasmussen for their role in developing my passion for research and providing me my first opportunity as an undergraduate student. Both were tremendous mentors in research and graduate school selection and I am forever indebted to them. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%End of acknowledgements%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%
+%Table of Contents%
+%%%%%%%%%%%%%%%%%%%
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Abstract -- Delete or comment out if not wanted:%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Abstract}
+
+\tab Ensemble sensitivity analysis (ESA) and its derivative observation targeting, have been tested on dryline convective initiation (CI) forecasts to assess dynamical sensitivities of severe convection forecasts and the value of targeted observations to improve prediction. ESA techniques based on the Ensemble Kalman filter (EnKF) utilize a linear relationship between a scalar forecast metric and a previous model state. Utilizing the Data Assimilation Research Testbed (DART), forecasts may be generated from cycled analyses produced by the EnKF, developing flow-dependent covariances to form a strong relationship between model state variables and the forecast metric. Forecast metrics are chosen to be convective-related parameters critical to the issuance of severe weather alerts for real-time forecasters. \\
+
+\tab Forecasts are generated for two dryline CI cases in 2012 and 2013 in north-central Texas with a 50-member WRF-DART ensemble. Ensemble sensitivity highlights moisture and temperature regions at the surface, downstream of the response region 0-12 hours prior to CI. Sensitivities are also evident along surface pressure troughs and mesoscale boundaries. Farther aloft the forecasts are sensitive to upper-level trough placement and instability characteristics 0-24 hours prior to CI. There exists both magnitude and positional sensitivities with these features. The assimilation of targeted observations show general improvement to the forecasts, but their impacts to the forecast metric variance do not correlate with the estimated changes from ESA theory due to non-linear mesoscale forecast evolution.
+
+%%%%%%%%%%%%%%%%%
+%End of abstract%
+%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%List of tables and list of figures %
+%Delete or comment out if not needed%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\listoftables
+
+\listoffigures
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%End of lists of tables and figures%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% OPTIONAL CHAPTER FOR ABBREVIATIONS %%%%%%%%%%%%%
+\chapter{List of Abbreviations}
+
+3DVar - 3-dimensional Variational Data Assimilation \\
+4DVar - 4-dimensional Variational Data Assimilation \\
+C - Celsius \\
+CAM - Convection Allowing Model \\
+CI - Convective Initiation \\
+DART - Data Assimilation Research Testbed \\
+EnKF - Ensemble Kalman Filter \\
+EnSRF - Ensemble Square Root Filter \\
+EAKF - Ensemble Adjusted Kalman Filter \\
+ESA - Ensemble Sensitivity Analysis \\
+ETKF - Ensemble Transform Kalman Filter \\
+F - Fahrenheit \\
+FASTEX - Fronts and Atlantic Storm-Track Experiment \\
+GPH - Geopotential Height \\
+GFS - Global Forecasting System \\
+hr - hour \\
+km - kilometer \\
+m - meter \\
+mb - milibar \\
+MADIS - Meteorological Assimilation Data Ingest System \\
+MDBZ - Composite Reflectivity \\
+NWP - Numerical Weather Prediction \\
+OSSE - Observing System Simulation Experiment \\
+PDF - Probability Distribution Function \\
+s - second \\
+SLP - Sea Level Pressure \\
+SV - Singular Vector \\
+W - Vertical Velocity \\
+WRF - Weather Research and Forecasting model \\
+WSRP - Winter Storm Reconnaissance Program \\
+WTM - West Texas Mesonet \\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%MAIN PART OF  DOCUMENT%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\mainmatter
+\chapter{Introduction}
+
+\tab Numerical weather prediction (NWP) involves complex dynamical equations, governing the motion of the atmosphere, that when integrated forward in time produce an estimate of the future atmospheric state. NWP is an initial value problem, where initial conditions that conventionally consist of surface, upper-air, and satellite observations are required for the governing equations to be integrated forward. Forecast error arises from imperfect models (i.e., model error) as well as insufficient model initial conditions (i.e., analysis error) that may propagate and intensify over the forecast period. Forecast improvement can be accomplished by improving the model configuration and dynamics, as well as decreasing initial condition error through additional observations and more advanced data assimilation techniques, the latter being the primary focus of this thesis. \\
+
+\tab With the advancement of computers and increased computer power over the past few decades, the ability to compute an ensemble of hundreds of numerical forecasts became a reality. The progress toward ensemble prediction still inherits the errors involved with traditional deterministic NWP, but it provides a probabilistic approach to forecasting, conveying uncertainty. Additionally, the advance in computing has allowed for more complex filter algorithms and more sophisticated data assimilation techniques to be implemented with numerical models, where observations are incorporated with a short-term forecast to create the next forecast analysis. Further improvements have been made to model forecasts by decreasing the horizontal grid spacing, a necessary improvement to explicitly model smaller-scale phenomena, such as mesoscale convective systems and supercell thunderstorms \citep{Kainetal2013}, sea-breeze/land-breeze interactions, and wind ramps.  \\
+
+\tab A promising technique to assess how small-scale perturbations in the initial conditions can greatly influence a forecast is sensitivity analysis. In general, sensitivity analysis examines the perturbation evolution onto forecast error \citep[e.g.,][]{LiuandKalnay2008,Kalnayetal2012,KangandXu2012,Ancell2013}, ensemble spread \citep[e.g.,][]{HamillandSnyder2002,QinandMu2011}, and dynamics \citep[e.g.,][]{MartinandXue2006,MelhauserandZhang2012}. Ensemble Sensitivity Analysis (ESA; \citealt{AncellandHakim2007a,HakimandTorn2008,TornandHakim2008a}) was the first technique to develop a linear relationship through non-linear ensemble forecasts between a chosen forecast metric (i.e. response function) and model initial conditions, without the need for the adjoint model (e.g. adjoint sensitivity). ESA equates how a perturbation in the initial state will increment the forecast variable of interest. Furthermore, various techniques (e.g. adjoint sensitivity \citep{LanglandandBaker2004}, singular vectors, ensemble transform, ensemble transform kalman filter (ETKF), ensemble sensitivity) have been detailed in the literature that have aided in improved prediction of atmospheric processes via adaptively-targeted observations  and their subsequent assimilation into the forecast process. Targeted locations are generally categorized as locations that 1) contain large initial condition error, 2) the error can be observed or measured, and 3) the error can be corrected by assimilating the observations \citep{Langland2005}. Adaptive observations supplement data sparse \citep{Morssetal2001} or high spread regions of the forecast domain, providing much needed data to improve analyses \citep{HamillandSnyder2002} and forecasts. Targeting based on ESA theory requires very little computational resources, in contrast with adjoint-based targeting. Target regions can be evaluated using ensemble output statistics and estimated observational error. These locations highlight where observations can be taken to reduce forecast uncertainty. Observations can be taken statically or mobile, utilizing airborne and surface-based platforms, and be introduced into the data assimilation procedure (e.g. Ensemble Kalman Filter, EnKF; \citealt{Evensen1994}). There is also potential for targeting techniques to benefit the permanent stationary observing network by optimizing the locations for observations \citep{Langland2005,AncellandHakim2007a}, a key issue in atmospheric prediction. \\
+
+\tab The estimated and realized impact of observations on resulting analyses and forecasts can be discovered through data assimilation experiments. \cite{TyndallandHorel2013} showed that observing the atmosphere in regions of high impact weather, where models had failed to produce the features with ample observations or observation density was poor, had large impacts on the forecasts. In contrast, they showed that taking observations in data rich regions (e.g. densely observed, urban areas) had less impact. The highest impact observations were highly dependent on their location to other observing sites suggesting that targeting regions can simply be chosen as regions where little observations exist. Although, the density of observations should not be the only requirement; data sparse regions may not be easily accessible. The assimilation of surface observations has also shown to greatly improve moisture and surface boundary characteristics, leading to better forecasts of convective initiation of squall lines \citep{HaandSnyder2014}. Furthermore, \cite{Wheatleyetal2012} showed that ensemble data assimilation-initialized forecasts produced lower errors over a control run in which no data assimilation was implemented. It is evident that additionally targeted observations, when assimilated with mesoscale models, could have large impacts on convective forecasts. \\
+
+\tab Dryline convective initiation (CI) remains a difficult process for mesoscale ensemble systems to accurately predict. Timing of storm initiation, location \citep{Cofferetal2013}, and the binary predictability issue with ensembles, whether or not storms will initiate, remain active areas of research for mesoscale predictability. With improvements to modeling systems to generate forecasts with convective allowing models (CAMs), the successful implementation of mesoscale data assimilation and novel, informative sensitivity algorithms, prediction of dryline CI can be greatly improved through adaptively observing the atmosphere. ESA and the above-described adaptive observing ESA derivative technique \citep{AncellandHakim2007a} will be implemented in this thesis as a method to improve numerical weather prediction guidance and initial conditions, improving mesoscale forecasts of severe dryline convection. Targeted observation impact will be verified via the use of data denial experiments whereby typically included observations are withheld from assimilation in a control run and added to the observation set in an experimental run. Results from these experiments will be analyzed to evaluate ESA theory on the mesoscale for convective forecasts. With the evaluation of two similar cases, generalizations will be made to suggest where climatological targeting locations may exist for central Texas CI forecasts. This thesis is outlined as follows: Chapter 1 continues with the background on ensemble data assimilation, ensemble sensitivity analysis, and observation targeting; chapter 2 details methodology to conduct mesoscale targeting experiments; chapter 3 presents a case study and accompanying analysis. chapter 4 introduces a second case study with subsequent analysis; chapter 5 presents subjective climatological targeting results; finally, chapter 6 discusses results and concludes with remarks regarding observation targeting for mesoscale predictability.
+
+\section{EnKF Data Assimilation}
+
+\tab Data assimilation is a method that incorporates observations with short-term model forecasts to improve the model analyses for the next forecast. Historically, data assimilation was done by subjective analysis, statistical interpolation, and optimal interpolation techniques. Subjective analysis was a simple procedure that created analyses based on observations and a human forecaster. Analyses were generated by the forecaster from their own experience of the evolving system, governing their guess of the current atmospheric state and its evolution. Progress towards interpolation was made to utilize observations and their distance from model grid points to determine how much influence they would have on altering the model field. Statistical interpolation was one of the first to blend observations with a model state \citep{Cressman1959}. \citet{Cressman1959} developed a weighting function
+\begin{align}\label{weight_func}
+ W =
+  \begin{cases}
+  \frac{R^2 - r_{i,j}^2}{R^2 + r_{i,j}^2}  & \text{if } r < R \\
+   0       & \text{if } r \geq R
+  \end{cases}
+\end{align}
+
+that described the impact from observations onto the model grid with i x j grid points, where $r_{i,j}$ is the distance between one observation and the $(i,j)$ model grid point and $R$ is the pre-determined radius of influence of the observation. If the observation was farther from a grid point than the influence of radius, no impact would be felt on the model grid point. The weighting function with the observation ($y_i$) could be used to update the model analysis field ($x_f$) and create a new analysis ($x_a$),
+\begin{align}\label{update_eqn}
+	x_a = W_i ( y_i - x_f ) + x_f.
+\end{align}
+
+This technique falls short however, by not incorporating model or observational error in the estimation of the weighting function. Optimal interpolation was the successor to Cressman's scheme and became the predecessor of all modern data assimilation techniques. A one-dimensional example could be where an observation is taken at a model grid point. The observation ($T_o$) is assumed to have an error distribution $\sigma_0$. Likewise, the model has a first guess ($T_f$) and error distribution $\sigma_f$ from the grid point. The update equation is similar to Eq.~$\ref{update_eqn}$, W replaced with
+\begin{align}\label{optimal_k}
+	k = \frac{\sigma^2_f}{\sigma^2_f + \sigma^2_o},
+\end{align}
+
+and k derived from the least-squares solution to maximize likelihood and minimize variance. The analysis error distribution ($\sigma_a$) can also be computed, such that
+\begin{align}\label{optimal_err}
+	\sigma^2_a = (1-k)\sigma^2_f.
+\end{align}
+
+Eq.~$\ref{optimal_err}$ describes how the error distribution of the analysis field evolves with the inclusion of observations thru $k$. It can be seen from Eq.~$\ref{optimal_err}$ that the analysis variance will always be less than the first guess error distribution, illustrating how observations will create a more certain analysis than the first guess which is a universal feature of modern data assimilation systems.  \\
+
+\tab Optimal interpolation is the foundation for most current data assimilations but scaled considerably larger. Ultimately what is desired is the best solution of the current state by combining all observations available (quality controlling and thinning sometimes desired) with a first guess of the current state, typically a short-term forecast (e.g. 6-hour) from a numerical model. With sufficient initial conditions, the model well represents the current atmospheric state within the first few hours of a forecast so a short-term model forecast is viable for a first guess of the current state. The assimilation procedure can be thought of in terms of probability distributions, where
+\begin{align}\label{prob_xt_yall}
+	P(\bf{x_t} | \bf{Y})
+\end{align}
+
+represents the probability of the current state ($\bf{x_t}$) given all possible observations and information about the past states ($\bf{Y}$). Bayes theorem \citep{BayesandPrice1763} states
+\begin{align}
+	P(\mathbf{A}|\mathbf{B}) \propto P(\mathbf{B}|\mathbf{A})P(\mathbf{A}),
+\end{align}
+so Eq.~\ref{prob_xt_yall} can be rewritten
+
+\begin{align}\label{bayes}
+	P(\mathbf{x_t} | \mathbf{Y}) \propto P(\mathbf{Y} | \mathbf{x_t}) P(\mathbf{x_t}).
+\end{align}
+
+Since $\bf{Y}$ accounts for current observations and all past states, $P(\bf{Y} | \bf{x_t})$ can be considered as  
+\begin{align}\label{prob_yall_xt}
+	P(\bf{Y} | \bf{x_t}) \propto P(\bf{Y_t} | \bf{x_t})P(\bf{Y_{t-1}} | \bf{x_t}),
+\end{align}
+
+where $\mathbf{Y_t}$ and $\mathbf{Y_{t-1}}$ represent current and past observations, respectively. Inserting Eq.~$\ref{prob_yall_xt}$ into Eq.~$\ref{bayes}$ and utilizing Bayes theorem again for $P(\bf{x_t} | \bf{Y_{t-1}})$,
+\begin{align}
+	P(\bf{x_t} | \bf{Y_{t-1}}) \propto P(\bf{Y_{t-1}} | \bf{x_t})P(\bf{x_t}),
+\end{align}
+
+Eq.~$\ref{bayes}$ becomes,
+\begin{align}\label{prob_xt_yall_2}
+	P(\bf{x_t} | \bf{Y}) \propto P(\bf{Y_t} | \bf{x_t})P(\bf{x_t} | \bf{Y_{t-1}}).
+\end{align}
+
+Eq.~$\ref{prob_xt_yall_2}$ describes the posterior (analysis) probability distribution function (PDF). In other words, the probability of the state given all observations is proportional to the product of the observation likelihood PDF and prior PDF (first guess model state), the first and second terms of the right hand side of Eq.~$\ref{prob_xt_yall_2}$, respectively. If the PDFs are assumed Gaussian, which is true with the EnKF, the product of the prior and observation PDFs results in a new Gaussian PDF that has a smaller standard deviation and theoretically more precise mean estimate (Fig.~$\ref{pdfs_enkf}$). \\
+
+\begin{figure}[t]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/pdfs_enkf.pdf}\\
+  \caption{Qualitative depiction of the posterior PDF by combining the observation likelihood and prior PDF, all of which are assumed Gaussian.}
+\label{pdfs_enkf}
+\end{figure}
+
+\tab It should be noted that Eq.~$\ref{prob_xt_yall_2}$ is recursive, provided a PDF can be generated at time t from the state at time t-1 (e.g. ensemble of short-term deterministic forecasts integrated forward). In order to solve Eq.~$\ref{prob_xt_yall_2}$, which is fully non-Gaussian, error statistics from the model and observations have to be assumed Gaussian and observational instrumentation errors must be uncorrelated, neither of which are great assumptions. For normally distributed errors, the PDFs in Eq.~$\ref{prob_xt_yall_2}$ can be represented with multi-dimensional Gaussian functions. Eq.~$\ref{prob_xt_yall_2}$ becomes
+\begin{align}\label{prob_withgauss}
+	P(\bf{x_a} | \bf{Y}) \propto e^{-\frac{1}{2} [\bf{Y}-H(\bf{x_a})]^T \bf{R}^{-1} [\bf{Y}-H(\bf{x_a})]} e^{-\frac{1}{2} [\bf{x_a} - \bf{x_b}]^T \bf{B}^{-1} [\bf{x_a} - \bf{x_b}]}.
+\end{align}
+
+where $\bf{Y}$, $\bf{x_a}$,and $\bf{x_b}$ are the observation, analysis, and first-guess model state vectors, $\bf{R}$ and $\bf{B}$ are the observation and background error covariance matrices, and $\mathbf{H}$ is a linear operator mapping model state variables to the observation locations, respectively. Taking the natural log of both sides of Eq.~\ref{prob_withgauss} yields
+\begin{align}\label{prob_log}
+	-\ln P(\bf{x_a} | \bf{Y}) \propto [\bf{Y}-H(\bf{x_a})]^T \bf{R}^{-1} [\bf{Y}-H(\bf{x_a})] + [\bf{x_a} - \bf{x_b}]^T \bf{B}^{-1} [\bf{x_a} - \bf{x_b}].
+\end{align}
+
+Eq.~$\ref{prob_log}$ is known as a Gaussian analysis equation and can be solved using two approaches, variational or direct, which will yield the analysis of maximum likelihood. Variational techniques solve for the minimum of the cost function $\mathbf{J}$, 
+\begin{align}\label{J}
+	\bf{J} = -\ln P(\bf{x_a} | \bf{Y}),
+\end{align}
+
+by computing the derivative of $\bf{J}$ with respect to $\bf{x_a}$ and iteratively searching for the minimum of the function, taking small steps along the derivative. Additionally, because the second derivative of $\bf{J}$ is positive definite, we are assured that the critical point of $\bf{J}$ is the global maximum likelihood and not a local maximum (i.e. local minimum in the function of $\bf{J}$). The direct approach solves $\frac{\partial \bf{J}}{\partial \bf{x_a}} = 0$ explicitly. Table $\ref{minimize}$ shows the two techniques and their resulting formulas. A distributed solution is one based on generating an analysis over a time interval, rather than at a single time (sequential). It should be noted that the Kalman smoother and 4-dimensional variational (4DVar) techniques both try to incorporate "future" observations, accounting for observations in a given time window before analysis and afterward. Neither distributed- (e.g., Kalman smoother) nor varitational direct (e.g., 4DVar) techniques will be elaborated on in-depth, rather readers are directed to \cite{Sasaki1970}, \cite{Thepautetal1993}, \cite{Cohnetal1994}, and \cite{Lorenc2003} for example implementation of each technique. \\
+
+\begin{table}[t] 
+\caption{Methods to Minimize the Cost Function} 
+\centering % used for centering table 
+\begin{tabular}{c c c} % centered columns (1 column) 
+\\ [0.5ex] \hline
+Solving Methods & Direct & Variational \\ [0.5ex] % inserts table 
+%heading 
+\hline % inserts single horizontal line 
+Sequential & Kalman Filter & 3DVar  \\ % inserting body of the table 
+Distributed & Kalman Smoother & 4DVar  \\ [1ex] % [1ex] adds vertical space 
+\hline %inserts single line 
+\end{tabular} 
+\label{minimize} % is used to refer this table in the text 
+\end{table} 
+
+\tab The Kalman filter \citep{Kalman1960} is derived with a sequential direct solver technique, such that the derivative $\frac{\partial \bf{J}}{\partial \bf{x_a}}$ is explicitly solved,
+\begin{align}\label{djdx}
+	\frac{\partial \bf{J}}{\partial \bf{x_a}} = -2\bf{H}^T\bf{R}^{-1} [\bf{Y}-H(\bf{x_a})] + 2\bf{B}^{-1} [\bf{x_a} - \bf{x_b}] = 0.
+\end{align}
+
+Rearranging and solving for $x_a$,
+\begin{align}\label{kalman_update}
+	\bf{x_a} = \bf{x_b} + \bf{BH}^T [\bf{HBH}^T + \bf{R}]^{-1} [\bf{Y}-\bf{H}(\bf{x_b})],
+\end{align}
+
+where $\bf{BH}^T  [ \bf{HBH}^T+\bf{R} ]^{-1}$ is the Kalman gain matrix ($\bf{K}$). Eq.~\ref{kalman_update} describes the update to the domain from the model first-guess and observations. \\
+
+\begin{figure}[t]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/covariance_spread.pdf}\\
+  \caption{Qualitative example of how covariances are spread with the (a) Kalman filter and (b) variational solvers for a hypothetical temperature observation along a frontal boundary.}
+\label{covariance_spread}
+\end{figure}
+
+\tab Current data assimilation procedures, such as 3-dimensional variational (3DVar), 4DVar, and the EnKF, vary with their representation of $\bf{B}$, the background error covariance matrix. The EnKF accounts for $\bf{B}$ from the sample covariances, 
+\begin{align}\label{background_covar}
+	\bf{B} = \frac{1}{N-1} \delta \bf{X} \delta \bf{X}^T
+\end{align}
+
+between an ensemble of atmospheric states, where $\bf{X} $ is the perturbation vector from the ensemble mean. 3DVar systems account for $\bf{B}$ with an isotropic-static climatological covariance matrix (Fig.~\ref{covariance_spread}a). While the variational systems are less computationally expensive, the EnKF method allows for flow-dependency within the background errors by continuously cycling the assimilation of observations and developing the flow-dependent covariances from the current atmospheric evolution (Fig.~\ref{covariance_spread}b). 4DVar does have an advantage over the EnKF by developing accurate time covariances within the assimilation window, a feature that the EnKF does not inherently contain \citep{Kalnayetal2007}. However, the time-covariance accuracy is not maintained outside of the 4DVar window. 
+
+\tab \cite{Zhangetal2011} compared 3DVar, 4DVar, and EnKF assimilation system errors in 12 to 72 hr forecasts on the synoptic scale, with a 90 km grid spacing model. EnKF and 4DVar compared favorably in the 12 to 36 hr forecast timeframe of horizontal winds and surface temperature, with the EnKF system superior to the other two variational systems beyond 48 hours. Additionally, \cite{Zhangetal2011} speculate the EnKF root mean square error for moisture variables is significantly better than both variational systems at all forecast lead times due to its treatment of flow-dependent background covariances versus the static covariances in the variational systems, similarly discussed by \cite{MengandZhang2008a} and \cite{TornandHakim2008a}. EnKF analyses in warm and cool seasons of the United States have also shown to well represent observations and mesoscale features compared to variationally-assimilated observations in the Real-Time Mesoscale Analysis system \citep{KnopfmeierandStensrud2013} further illustrating the EnKF's ability to capture the current atmospheric state, accurately.  \\ 
+
+\tab It should be noted that significant enhancements have been made recently to couple variational and ensemble data assimilation procedures. These hybrid data assimilation systems have shown to have significant advantages over their component counterparts \citep{MengandZhang2011}. \cite{SchwartzandLiu2014} detailed the advantages of a hybrid system, identifying its superiority in precipitation forecast locations over the ensemble square-root filter (EnSRF), 3DVar, and no-data-assimilation initialized forecasts. While hybrid systems have shown to produce better forecasts \citep{Zhangetal2009,Zhang2010,ZhangandZhang2012}, on the order of up to 60 hours, their implementation into operational forecasting centers has been halted by their large computational requirements. \\
+
+\section{Ensemble Sensitivity Analysis}
+
+\tab Sensitivity analysis generally determines how uncertainties in a model lead to large differences in forecast evolution. Traditionally, adjoint sensitivity has been used to conduct an examination of how uncertainties in model initial conditions leads to large, growing forecast error. Adjoint sensitivity utilizes the adjoint model and maps a forecast time gradient of a forecast metric back to the initial time to obtain a value of sensitivity of the forecast metric ($\bf{J}$) with respect to the initial conditions. Limitations exist with this method, including less accurate predictions for larger perturbations as the method is a linear approximation, and a requirement that the non-linear model be differentiable. Readers are referred to \cite{LeDimetandTalagrand1986} for a more thorough description of adjoint sensitivity. While the adjoint sensitivity approach requires the use of an adjoint model, ESA does not require such a large computational expense. ESA equates a change in an initial-condition state variable to a change in the chosen forecast metric via statistical relationships between the two gained from an EnKF generated ensemble of forecasts. Regressing an ensemble of scalar forecast metrics to a model grid point will yield a value of sensitivity determined from the regression slope (Fig.~\ref{scatter}). Similarly, regressing the ensemble of forecast metrics to every grid point will yield a domain wide sensitivity field that can be evaluated to contain dynamical, sensitive features to the forecast metric. Only a user-selected scalar forecast metric and an ensemble of non-linear model forecasts integrated forward to a forecast time t is required. Mathematically, ESA is represented by
+\begin{align}\label{ens_sens}
+	\frac{\partial \bf{J}}{\partial \bf{x_t}} = \frac{covariance(\bf{J},\bf{x_t})}{variance(\bf{x_t})},
+\end{align}
+
+\begin{figure}[t]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/scatter_example.pdf}\\
+  \caption{Linear regression (green line) of 850 mb GPH (m) against maximum column reflectivity (dBZ) in a forecast metric region for all ensemble members. Regression slope represents the sensitivity value (dBZ $m^{-1}$) at the grid point where GPH is valid for all ensemble members.}
+\label{scatter}
+\end{figure}
+
+where $\bf{J}$ is the scalar forecast metric vector and $\bf{x_t}$ the state variable vector at the chosen forecast time ($t$). It should be noted that sensitivity can be applied at any forecast lead time, from analysis to one time step less than the verification time of the forecast metric, which may highlight dynamical sensitivities that propagate through the forecast. It can be further shown that ensemble sensitivity is directly related to adjoint sensitivity and the readers are referred to \cite{AncellandHakim2007a} for a full derivation of this relationship. While a goal of this thesis will be to determine the usefulness of ESA in detecting dynamical relationships between variables, ESA relates a forecast metric to initial conditions through statistical relationships and dynamical relationships can only be inferred with a reasonable sample of similar case studies, a limitation of this study. \\
+
+\tab Sensitivity analysis as a general topic has been applied on various scales for many atmospheric phenomena. Primarily, sensitivity studies that involve data assimilation systems have been conducted on the synoptic-scale, where assumptions of linearity between forecast metric and initial conditions can more often be made, related to extratropical transition \citep[e.g.,][]{TornandHakim2009, Anwenderetal2012}, tropical cyclones \citep[e.g.,][]{Torn2010, QinandMu2011, ItoandWu2013, TornandCook2013, Xieetal2013, Torn2014}, and extra-tropical cyclones \citep[e.g.,][]{AncellandHakim2007a, TornandHakim2008a, GarciesandHomar2009, GarciesandHomar2010, Changetal2013, McMurdieandAncell2013}. Only a few studies have attempted data assimilation sensitivity on the mesoscale \citep[e.g.,][]{MartinandXue2006,MelhauserandZhang2012} and even fewer have used ESA to evaluate initial condition sensitivity \citep[e.g.,][]{Zacketal2010a,Zacketal2010b,Zacketal2010c,Zacketal2011a,Zacketal2011b,BednarczykandAncell2014}. \cite{AncellandHakim2007a} showed that ensemble sensitivities for a forecast metric of perturbation pressure at a single point were primarily located in regions of prominent weather features on the synoptic scale. They also showed that adjoint and ensemble sensitivities varied considerably in regards to location and magnitude, with adjoint sensitivity tilting strongly with height and of smaller magnitude than the more modest tilt of ensemble sensitivity (Fig.~\ref{ancelltilt}). Additionally, ensemble sensitivity tended to cover a larger portion of the troposphere than that of adjoint, which was localized to lower levels. \\
+
+\tab Climatological sensitivity of forecasts to initial conditions over many cases may also be examined. \cite{TornandHakim2008a} computed the climatological sensitivity of 24 hr sea level pressure (SLP) to forecast analyses of SLP, 850 mb temperature, and 500 mb geopotential height (GPH) over 30 cases using ESA and discovered significant patterns upstream of the forecast metric region (Fig.~\ref{tornsens}). Similarly to \cite{AncellandHakim2007a} they found an upstream tilt to the sensitivities from the surface to upper levels. They also hypothesized that surface-based SLP measurements from targeted buoy and ship observations could have the largest impact on the surface-based SLP and precipitation forecast metrics in the forecast area since those metrics were most sensitive to the SLP analyses. 
+
+\begin{figure}[!htb]
+  \centering
+  \noindent\includegraphics[width=20pc,angle=0]{./figures/senstilt.jpg}\\
+  \caption{Vertical cross section of (a) adjoint sensitivity and (b) ensemble sensitivity (Fig. 7, \citealt{AncellandHakim2007a})}
+\label{ancelltilt}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \noindent\includegraphics[width=15pc,angle=0]{./figures/tornsens.jpg}\\
+  \caption{Climatological sensitivity of 24 hour SLP forecasts (shaded) to (a) SLP (mb), (b) 850 mb temperature (K), and (c) 500 mb height (m) based on 30 cases over western Washington. (Fig. 3, \citealt{TornandHakim2008a})}
+\label{tornsens}
+\end{figure}
+
+\tab Furthermore, a predictability study by \cite{MelhauserandZhang2012} looked at how initial condition perturbations can vary the forecast of a mesoscale convective system. Initial conditions were generated by linearly averaging the prognostic variables between good and poor members of a 40-member ensemble, based on their ability to accurately forecast a mesoscale bow echo. Variations to the initial conditions were created by weighting the good and poor members differently during the averaging, creating a new ensemble set of nine 24 hr forecasts. Their results showed that small changes to the initial conditions provided limitations to forecasting the bow echo, creating a bifurcated result between the nine forecasts (Fig.~\ref{zhangpredict}), similar to results from \cite{Hawblitzeletal2007} of bifurcated forecasts within an ensemble. \cite{MelhauserandZhang2012} attributed their results to an inherent limitation to intrinsic predictability where little forecast improvement will be realized even when initial condition error is reduced because no dominant solution was present. They further highlight that their results are evidence for the need of ensemble forecasts for high-impact severe weather.  
+
+\begin{figure}[!htb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/zhangpredict.jpg}\\
+  \caption{Linearly averaged 24 hr forecasts of reflectivity (dBZ, shaded) and SLP (mb, contoured). (Fig. 11, \citealt{MelhauserandZhang2012})}
+\label{zhangpredict}
+\end{figure}
+
+\tab Only a handful of studies have applied ESA on the mesoscale. \cite{Zacketal2010a} associated the sensitivity of 80 m winds in a mountain pass, related to wind power generation, with a sample of prior state variables from a 48-member ensemble system on a 4 km grid. They found localized regions of sensitivity that were coherent and consistent with the physical processes within the mountain pass (Fig.~\ref{zackregsens}). Their results additionally suggest that an improvement to the wind power forecast can be generated through observing the most sensitive initial condition variables in locations that were consistently and highly sensitive. They computed composite sensitivity 3 hr forecasts over a 45-day period of 80 m wind speeds in a mountain pass and found consistent, dynamical sensitivity, in contrast with strictly statistical sensitivity, to 80 m wind speeds upstream of the pass (Fig.~\ref{zackclimosens}). 
+
+\begin{figure}[!htb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/zackregsens.jpg}\\
+  \caption{Sensitivity of 3 hr forecast 80 m wind speed ($m s^{-1}$) in the white box to domain wide 80 m wind speed ($m s^{-1}$) at analysis time. (Fig. 4, \citealt{Zacketal2010a})}
+\label{zackregsens}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/zacksens.jpg}\\
+  \caption{Composite sensitivity of 3-hourly forecasts of 80 m wind speed ($m s^{-1}$) to 80 m wind speed ($m s^{-1}$) throughout the domain over 45 days. (Fig. 12, \citealt{Zacketal2010a})}
+\label{zackclimosens}
+\end{figure}
+
+\tab The implementation of ESA on the mesoscale for dryline CI will be a major component of this thesis. ESA has shown to be valuable on the synoptic scale to evaluate regions of dynamic sensitivity of forecasts to initial condition errors. To the authors knowledge, this approach has only been applied to convection along the dryline by \cite{BednarczykandAncell2014}. The ability to improve convective-scale forecasts lies partially within the improvement of model initial conditions, which can be achieved through observation targeting.  
+
+\section{Observation Targeting}
+
+\tab The targeting strategy employed for this thesis is derived from ESA theory, whereby a change in variance in a forecast metric is obtained by assimilating additional observations with an EnKF system. A full derivation of this observation targeting technique can be found from Ancell and Hakim (2007). The forecast metric is represented as the vector $\bf{J}$ of size $\emph{M}$, the ensemble size. Removing the ensemble mean from $\bf{J}$ yields the perturbation vector $\delta\bf{J}$. Furthermore, the variance of $\bf{J}$ is simply defined as
+\begin{align}\label{J_var}
+	\sigma = \frac{1}{M-1} \delta\bf{J} \delta{\mathbf{J}}^T.
+\end{align}
+
+The prior error covariance matrix ($\bf{B}$) is updated with the assimilation of observations such that the new analysis error covariance ($\bf{A}$) is
+\begin{align}\label{obassim}
+	\bf{A} = (\bf{I} - \bf{K}\bf{H})\bf{B},
+\end{align}
+
+where $\bf{K}$ is the Kalman gain matrix, $\bf{H}$ is a linearized observation operator mapping the model to observation space, and $\bf{I}$ is the identity matrix. The change in variance is related to adjoint sensitivity by
+\begin{align}\label{delta_sigma}
+	\delta \sigma = \left[ \frac{\partial \bf{J_a}}{\partial \bf{x_0}} \right]^T (\mathbf{A} - \mathbf{A'}) \left[  \frac{\partial \bf{J_a}}{\partial \mathbf{x_0}}\right],
+\end{align}
+
+where $ \frac{\partial J_a}{\partial x_0}$ is the adjoint sensitivity and $\bf{A'}$ is the updated analysis error covariance matrix with additional observations assimilated. Using Eq.~$\ref{obassim}$ and the Kalman gain matrix, Eq.~$\ref{delta_sigma}$ becomes
+\begin{align}
+	\delta \sigma = \left[ \frac{\partial \bf{J_a}}{\partial \bf{x_0}} \right]^T \mathbf{A}\mathbf{H}^T\mathbf{E}^{-1}\mathbf{H}\mathbf{A}  \left[  \frac{\partial \bf{J_a}}{\partial \mathbf{x_0}}\right]
+\end{align}
+
+where $\mathbf{E}^{-1} = (\bf{H}\bf{A}\bf{H}^T + R)^{-1}$ is the innovation error covariance matrix. Using the adjoint and ensemble sensitivity ($\frac{\partial \bf{J_e}}{\partial \bf{x_0}}$) relationship, 
+\begin{align}
+	\frac{\partial \bf{J_e}}{\partial \bf{x_0}} = \bf{D}^{-1}\bf{A} \frac{\partial J_a}{\partial x_0}, 
+\end{align}
+
+where $\mathbf{D}$ is the error variance matrix, the change in variance can be stated
+\begin{align}
+	\delta \sigma = \left( \bf{H}\bf{D} \frac{\partial J_e}{\partial x_0} \right)^T \bf{E}^{-1} \left( \bf{H}\bf{D} \frac{\partial J_e}{\partial x_0} \right).
+\end{align}
+
+It can be seen that these matrices more simply represent the equation
+\begin{align}\label{var_red}
+	\delta \sigma = -\frac{covariance^2(\mathbf{J},\mathbf{x_0})}{variance(\mathbf{x_0}) + variance(ob)}, 
+\end{align}
+
+when the observation is taken at a model grid point such that $\bf{H}=\bf{I}$. This provides the determination of $\delta \sigma$ at every model grid point. 
+
+\tab The addition of a single observation into the assimilation procedure yields a change in the variance of the forecast metric with an estimated change calculated with the covariances between the model state and forecast metric and the model state variance. It should be noted that the observation value is not needed to calculate an estimated variance change, rather only the error variance of the observation is needed, which is typically available from the observational hardware specifics. Additionally, Eq.~$\ref{var_red}$ is positive definite, in that observations always act to reduce the forecast variance and not increase it as was previously demonstrated with Eq.~$\ref{optimal_k}$. 
+
+\tab Targeting programs from 1997 to 2004 (e.g., Fronts and Atlantic Storm-Track Experiment (FASTEX; \citealt{Szunyoghetal1999}); Winter Storm Reconnaissance Program (WSRP; \citealt{Szunyoghetal2000})) saw forecast error reduction of approximately 10 percent over the midlatitudes with isolated cases of 50 percent reduction in error for short-term forecasts \citep{Langland2005}. These programs were conducted in the mid-latitudes on synoptic features where assumptions of linear error growth are more appropriate. Additionally, they utilized the ETKF and singular vector (SV) methods for targeting \citep[e.g.,][]{Bishopetal2001,KhareandAnderson2006,Hamilletal2013} which do account for observation errors and data assimilation procedures. However, observation targeting methods derived from ESA are computationally simpler and faster to calculate and because they are derived from the EnKF, they are inherently related to the background flow through the covariances. \cite{MorssandEmanuel2002} concluded that additional targeted observations generally improved analyses and forecasts but increased errors with additional observations were unavoidable. The limitations of their results are linked to the 3DVar data assimilation scheme implemented, with inferior background covariances to the EnKF. \\
+
+\tab Targeting based on ESA theory is limited in cases where strong non-linearity plays a role in forecast evolution. \cite{Xieetal2013} examined the impact of targeted dropsonde observations on tropical cyclone Morakot rainfall forecasts through observing system simulation experiments (OSSE) and found that targeted observations improved the ensemble mean forecast error but increased the forecast variance, contradictory to ESA theory (Eq.~\ref{var_red}). This was due to the fact that a large fraction of ensemble members had very poor forecasts of rainfall and cyclone track (Fig.~\ref{xieforecast}), resulting in a poor but low spread forecast. After the assimilation of additional dropsondes the forecast was improved and the ensemble gained spread within the forecast, a good result for ensemble prediction where uncertainty information is desired. \cite{Xieetal2013} attributed this result to nonlinear dynamics governing the precipitation and nonlinear topography influences. Similar reasoning has been suggested for difficulties in targeting of CI forecasts with strong non-linear dynamical evolution of severe storms with interacting antecedent convection and binary forecasts from ensemble members \citep{Hilletal2013}. In a case study examined by \cite{Hilletal2013}, previous convection along a mesoscale boundary evolved non-linearly to influence convection the next day. However, even when non-linear dynamics are involved in atmospheric processes, there are advantages to assimilating targeted versus non-targeted or conventional observations \citep{Jungetal2012,KangandXu2012,KnopfmeierandStensrud2013,PoterjoyandZhang2014,Torn2014}. \cite{Torn2014} showed that for four tropical cyclone cases, assimilating 3-5 targeted over randomly selected dropwindsondes had a larger impact on the forecast. Moreover, select targeted observations accounted for 80\% of the difference between the control simulation, where only conventional observations were assimilated, and the experimental simulation where all available additional dropwindsondes were assimilated. The improvement of initial conditions and analyses for ensemble forecasts can be obtained through targeting observations that will have the greatest impact on the forecast and assimilating them into the ensemble data assimilation system.  
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/xieforecast.jpg}\\
+  \caption{(a) Forecast tracks of typhoon Morakot with best track (black), truth (blue), and control (red) highlighted amongst the 50-member ensemble tracks (green). (b) Differences between the truth and control forecast of SLP (mb). (Fig. 2, \citealt{Xieetal2013})}
+\label{xieforecast}
+\end{figure}
+
+
+%\section{Focus} 
+
+%\tab The improved predictability of severe dryline convection lies within the ability to accurately model the timing, location, and severity of storms. Diagnosing dynamical influences of initial condition errors is critical to understanding how improved prediction may be achieved. The techniques brought forth provide quantitative estimates of the projection of initial condition error onto convective forecasts. Observation targeting and adaptive observing, locating regions that statistically correlate to the forecast, provide a means to improve the forecast and increase certainty to forecast evolution. Evaluations of estimated versus actual changes in the forecast will verify the utility of these techniques. 
+
+\chapter{Methods}
+
+\tab ESA is utilized to evaluate dynamical sensitivities of convective forecasts. In addition, experiments are developed to assess the impact of targeted observations on forecast error (i.e. variance) as well as their improvement to the overall convective forecast, and validate the targeting techniques for future implementation in real-time operations. Forecast metrics are chosen based on their convective properties and their impact on the forecast process for real-time forecasting. Benchmark variables chosen for the pre-convective environment are also selected to test the targeting theory. These impacts are determined through data denial experiments, whereby regularly assimilated observations are withheld and treated as hypothetical targeted observations for the forecast. Two cases are examined to subjectively determine climatological targeting locations for similar convective forecasts and if dynamical relationships can be inferred through ensemble sensitivity analysis to improve predictability of dryline convective initiation in the Southern Plains. Validations of ESA targeting theory are completed through evaluations of estimated and actual changes of the forecast metrics and their associated error. 
+
+\section{Model Setup and Data Assimilation Procedure}
+
+\tab This study implements a 50-member multi-scale ensemble prediction system to generate forecasts of dryline-convective events. The Data Assimilation Research Testbed (DART; \citealt{Andersonetal2009}) along with an Ensemble Adjusted Kalman Filter (EAKF; \citealt{Anderson2001}) are utilized with the Weather Research and Forecasting (WRF) v3.3 numerical weather prediction model to generate ensemble analyses and forecasts. Three one-way nested domains at 36, 12, and 4 km grid spacing are positioned so that the highest resolution domain is centered over the Southern Plains, modeled after the Texas Tech University real-time ensemble system (Fig.~\ref{domain}).\footnote{See: $http://www.atmo.ttu.edu/bancell/real\_time\_ENS/ttuenshome.php$} Lateral boundary and initial conditions are obtained from interpolated Global Forecast System (GFS) data for the outermost domain and the nested regions have boundary and initial conditions generated from their respective parent domains, all of which are perturbed to generate the ensemble. Lateral boundary conditions are updated on domain three every three hours to prevent model divergence while domains one and two are updated every six hours on the boundaries. \cite{Kainetal2013} highlight the capability of using a $\sim$4km grid-spacing mesoscale model to explicitly predict convective-scale phenomena, both in timing and location. Thus, the model setup is capable of producing accurate forecasts of CI without the need for convection parameterizations on the finest spatial resolution domain. \\
+
+\begin{figure}[t]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/wps_show_dom.pdf}\\
+  \caption{Model domain configuration for the WRF-DART ensemble. Domain one is at 36 km resolution (d01), domain two at 12 km (d02), and domain three at 4 km (d03).}
+\label{domain}
+\end{figure}
+
+\tab Covariance localization (\citealt{Anderson2001}) and adaptive inflation (\citealt{Anderson2007}; \citealt{Anderson2009}) are employed to reduce the influence of observations across the domain and inflate the ensemble  spread to protect against under-dispersion, respectively. These techniques are spatially- and temporally adapting algorithms to account for model and observational errors that may lead to inaccurate, convergent solutions of the forecast. The Gaspari-Cohn localization function \citep{GaspariandCohn1999} is formatted with horizontal half-widths of approximately 600, 300, and 300 km for domains 1, 2, and 3, respectively. This function is utilized so that an assimilated observation will have zero impact on the state space two times the half-width away from the observation location; critical to reduce spurious covariances between model state variables at unrealistic distances from the observation location. The need to inflate the ensemble spread is based upon the principle that sampling error arises when the ensemble size is significantly smaller than the degrees of freedom. The inflating is performed on the prior distribution of ensemble members so that filter divergence can be avoided, where the prior estimates are so confident (very small spread) that the observations have no effect during assimilation \citep{Andersonetal2009}. \\
+
+\tab To develop appropriate flow-dependent covariance within the background fields, an assimilation cycle is employed for 48 hours prior to forecast initialization on domain one. A 6-hourly cycle combines observations around the analysis time with a 6 hr ensemble of forecasts. Domain two and three are each cycled for 24 hours up until the forecast begins, using the same 6-hour cycle. Conventional observations (Table~\ref{OBS}) are assimilated at all cycle times within one hour around analysis time. Mesonet data (land-surface stations), which come at high spatial resolution, are opted to be excluded from domain since precision is not required for domain one, rather accuracy is preferred which can be achieved with fewer mesoscale observations. Due to the inability to properly model small-scale features in sub-grid scale dimensions, various parameterizations are used to model microphysical, boundary layer, radiative, and convective processes (Table $\ref{params}$). Of note, the finest domain does not parameterize cumulus convection, as the grid-scale is small enough to explicitly resolve severe storms \citep{Kainetal2013} as mentioned previously.  \\
+
+	\begin{table}[b] 
+	\small
+	\caption{Conventional Observations Assimilated} 
+	\centering % used for centering table 
+\scalebox{0.9}{
+	\begin{tabular}{c c c c c c c c c} % centered columns (1 column) 
+	\\ [0.5ex] \hline
+	Observation Types & T & U--Wind & V--Wind & Q & RH & $T_d$ & Altimeter & P \\ [0.5ex] % inserts table 
+	%heading 
+	\hline % inserts single horizontal line 
+	Land Surface* & X & X & X & X & X & X & X \\ % inserting body of the table 
+	METAR & X & X & X & X & X & X & X & X \\ 
+	ACARS & X & X & X & X & X & X \\ 
+	Satellite Winds &  & X & X\\ %need to actually include these in my experiments...
+	Radiosonde & X & X & X & X & X & X & X \\ 
+	Marine & X & X & X & X & X & X & X \\ [1ex]
+	\hline %inserts single line 
+	\end{tabular} 
+} \\
+* West Texas Mesonet observations are not included for control runs
+	\label{OBS} % is used to refer this table in the text 
+	\end{table} 
+
+\tab Cases are chosen from a 6-month model-output dataset between February and July for the years 2012 and 2013. 48-hour forecasts were generated at 00 UTC each day from cold-start WRF runs, where no data assimilation was performed; rather interpolated initial conditions from the GFS were used to initialize the model integration. This cold-start methodology was used to verify that even without data assimilation, the model forecast was still able to produce convection in the general area of interest. It was hypothesized that data assimilation would only enhance the model performance. Model output fields were subjectively verified against archived radar composite images to select dates in which the model organized convection along the dryline in north-central Texas or adjacent regions. Due to time constraints, only two cases were selected for analysis. The two dryline convective events selected occurred on 3 April 2012 and 15 May 2013 over north central Texas. Data assimilation procedures were then implemented as outlined previously to develop control forecasts for each case. \\
+
+\begin{table}[b] 
+\caption{Model Parameterizations Used} 
+\centering % used for centering table 
+\scalebox{0.8}{
+\begin{tabular}{c c} % centered columns (1 column) 
+\\ [0.5ex] \hline
+Parameterization Types & Schemes Used \\ [0.5ex] % inserts table 
+%heading 
+\hline % inserts single horizontal line 
+Boundary Layer & Yonsei University \citep{Hongetal2006} \\ % inserting body of the table 
+Cumulus* & Kain-Fritsch \citep{Kain2004} \\ % inserting body of the table 
+Land Surface & Noah LSM \citep{ChenandDudhia2001} \\ 
+Long-Wave Radiation & Rapid Radiative Transfer Model \citep{Mlaweretal1997} \\ 
+Short-Wave Radiation & Dudhia \citep{Dudhia1989} \\ 
+Microphysics & Thompson \citep{Thompsonetal2004} \\ [1ex] 
+\hline %inserts single line 
+\end{tabular} 
+} \\
+*Convection is explicitly resolved on the third domain
+\label{params} % is used to refer this table in the text 
+\end{table} 
+
+\section{Analysis Methods}
+
+\tab ESA is applied for three forecast metrics, and numerous initial condition variables throughout the entire forecast. The analysis of the sensitivity and targeting fields determines what dynamical sensitivities exist that may have an impact on the forecast variables related to CI and more generally, convection. An objective approach to sensitivity evaluation is possible, but not a primary goal of this study. Sensitivity and targeting locations are evaluated at multiple model levels (surface, 850, 700, 500, and 300 mb) to additionally understand their vertical variability in regards to the various forecast metrics. 
+
+\tab The West Texas Mesonet (WTM; \citealt{Schroederetal2005}) is an array of more than 80 land-surface stations located throughout West Texas and eastern New Mexico (Fig.~$\ref{wtmstats}$). The majority of stations provide 5-minute data of wind speed and direction, temperature, and pressure measurements at various levels up to ten meters, while a small number provide even finer temporal resolution data. These data are available for assimilation via the Meteorological Assimilation Data Ingest System (MADIS) and are ingested into the real-time Texas Tech University forecasting system. \\
+
+\begin{figure}[!htb]
+  \centering
+  \noindent\includegraphics[width=35pc,angle=0]{./figures/wtmstats.pdf}\\
+  \caption{West Texas Mesonet station locations (starred) over terrain (m, shaded).}
+\label{wtmstats}
+\end{figure}
+
+\tab Targeted observation locations for north-central Texas convection were preliminarily determined to exist in West Texas in regions that overlapped with the WTM array. The WTM observations were chosen to be excluded from regular assimilation cycles (i.e. data denial) due to their proximity to targeted locations. They could then be used as hypothetical targeted observations when target values were relatively high over station locations. The first targeted observation is chosen for the station that has the largest estimated variance reduction value for the chosen forecast metric (Eq.~$\ref{var_red}$). The chosen observation type is then selected from that station (e.g. 2-meter temperature, 2-meter dew point, 10-meter wind speed, pressure), assimilated at the analysis time with an assumed observational error from the DART system, and an ensemble forecast is rerun with the new observation. Using the estimated change in forecast variance due to the new observation, a comparison can be made to the realized variance reduction following a calculation of the ensemble forecast spread. A subsequent targeted observation was then selected based on the highest estimated error variance reduction value, as calculated from the new forecast. It is important to note this distinction that new target values are determined from the new forecast, rather than the previous. Another approach is to define a targeted second observation conditional on the first \citep{AncellandHakim2007a}. However, the second observation is targeted upon an estimated change in the fields from a hypothetical first observation, rather than the actual change in the fields when a forecast is carried out with the first observation included, which is achieved with the former technique. The chosen procedure is repeated for up to three observations additionally assimilated and targeted locations are not repeated. \cite{KnopfmeierandStensrud2013} show that due to large localization radii, much larger than the spatial distance between stations as would be the case for the WTM, a limited number of mesonet observations assimilated provide similar forecast improvements to the assimilation of the entire mesonet set (diminishing returns). Thus, only a limited number of WTM observations are assimilated. The expected variance reduction from multiple stations for a single forecast metric is the summation of the expected values from each station after each new forecast is completed. This process is repeated for different forecast metrics (e.g. composite reflectivity (MDBZ), vertical velocity (W), vertical wind shear) related to convection as well as benchmark state variables (e.g. lowest model level temperature, surface pressure) for theory validation. This data denial approach will help validate the ensemble sensitivity analysis fields \citep{TornandHakim2008a,Zacketal2011b,Torn2014} as well as subjectively determining the benefit of a subset of WTM stations for convective forecasts. Finally, the two cases analyzed are compared to evaluate consistent dynamical sensitivity and observation targeting regimes for similar dryline CI forecasts. The cases are subjectively compared through the evaluation of sensitive and target regions relative to the forecast metric position. 
+
+
+\chapter{3 April 2012 Case Study}
+
+\section{Synoptic Evolution and Forecast Evaluation}
+
+\tab On 3 April 2012 a severe weather outbreak occurred over north Texas and the Dallas/Forth Worth, TX Metroplex. 236 reports of severe weather were accumulated with 22 tornadoes identified.\footnote{$http://www.spc.noaa.gov/climo/reports/120403\_rpts.html$} It has been well documented that drylines serve as a foci for severe storm formation due to convergent flow along the boundary and favorable vertical motion dynamics to support storm growth \citep{CarlsonandLudlam1968,KochandMcCarthy1982,Haneetal1993,Ziegleretal1997}. In this case, a dryline propagated eastward through the overnight and afternoon hours to north-central Texas after which it interacted with a southward propagating outflow boundary from previous convection which aided to initiate storms in the afternoon. To assess sensitivities of convective variables forecasts to initial conditions and through the entire forecast period, an ensemble of forecasts was generated that began on 3 April 00 UTC and ended on 4 April 00 UTC. 
+
+\begin{figure}[!b]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/dewpoint_series_2012.pdf}\\
+  \caption{Ensemble mean 2-meter dewpoint temperature (F, shaded and contoured every 3 F) at forecast hours (a)-(d) 6, 12, 18, and 24.}
+\label{dewpoint_series_2012}
+\end{figure}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=16pc,angle=0]{./figures/hgts_fhr19_2012.pdf}\\
+  \caption{Ensemble mean GPH (m, contoured every 20 m) valid at forecast hour 19 for (a)-(c) 300, 500, and 700 mb levels with mean temperature (${}^{\circ}$C, shaded) and wind speed (knots, barbs).}
+  \label{hgts_fhr19_2012}
+\end{figure}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/ci_panel_2012.pdf}\\
+  \caption{(a) Ensemble mean 850 mb GPH (m, contoured every 20 m) and temperature (${}^{\circ}$C, shaded). (b) Ensemble mean 2-meter dew point (F, shaded and contoured every 3 F). (c) Ensemble mean 2-meter temperature (F, shaded), mean SLP (mb, contoured every 2 mb), and 10-meter wind speed (knots, barbs). (d) Ensemble mean MDBZ (dBZ, shaded). All fields are valid at forecast hour 19.}
+\label{ci_panel_2012}
+\end{figure}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/outflow_boundary.pdf}\\
+  \caption{Radar composite image (dBZ, shaded) from the southern plains on 1324 UTC 3 April 2012. Image was obtained from the archive of images available through http://locust.mmm.ucar.edu}
+\label{outflow_boundary}
+\end{figure}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/mdbz_refl_2012.pdf}\\
+  \caption{Radar composite images (dBZ, shaded) from (a),(c),(e) 1724, 1853, and 1953 UTC, available through http://locust.mmm.ucar.edu. Corresponding ensemble mean MDBZ (dBZ, shaded) at forecast hours (b),(d),(f) 18, 19, and 20.}
+\label{mdbz_refl_2012}
+\end{figure}
+
+\tab The ensemble sufficiently forecast the aforementioned dryline and propagated it through the forecast period (Fig~\ref{dewpoint_series_2012}) to the approximate location it was identified in observations. It was placed in central Texas at the forecast analysis and propagated slowly into the forecast, marginally eastward. By forecast hour 24 the dryline was positioned over Dallas, TX (Fig~\ref{dewpoint_series_2012}d) where convection had been initiated hours prior. 
+
+\tab Flow aloft was characterized by a cutoff low that had ejected into the Southern Plains by forecast hour 19. At 300 mb, strong southwesterly flow was evident to the southeast of the low center (Fig.~\ref{hgts_fhr19_2012}a), which had penetrated the stratosphere with warmer temperatures than it's surrounding environment. This region was characterized by an 80+ knot speed max positioned just over and west of the surface dryline and very cold temperatures near -40 C to promote instability. A similar region is seen at 500 mb (Fig.~\ref{hgts_fhr19_2012}b) with a speed max in vicinity of and rounding the base of the cutoff low out over the dryline and modestly cool temperatures. Southerly flow is evident at 700 mb over central Texas (Fig.~\ref{hgts_fhr19_2012}c) with cool temperatures that, with sufficient heating near the surface, wouldn't prohibit convection. 
+
+\tab Near CI time of 19 UTC, the ensemble had developed southerly flow at 850 mb (Fig.~\ref{ci_panel_2012}a) and southeasterly flow at the surface, attendant with a developing surface cyclone (Fig.~\ref{ci_panel_2012}c). The dryline was positioned near central Texas with surface dewpoints near or above 50 F (Fig.~\ref{ci_panel_2012}b). Convection popped up along the dryline (Fig.~\ref{ci_panel_2012}d) by this time in the ensemble. An outflow boundary that developed from convection earlier in the day (Fig.~\ref{outflow_boundary}) helped to initiate storms as the boundary interacted with the dryline. It should be noted that the mean reflectivity field is negative in Fig. \ref{ci_panel_2012}d due to the microphysical scheme implemented within the ensemble. The Thompson microphysics scheme has a baseline value of -30 dBZ so the average reflectivity amongst ensemble members has the potential to be less than zero, especially if ensemble members have a high spatial variability. Initialization occurred near 18 UTC (Fig.~\ref{mdbz_refl_2012}a) with subsequent development and propagation to the northeast (Fig.~\ref{mdbz_refl_2012}c,e). The ensemble inaccurately forecast CI timing, not producing sufficient convection at 18 UTC (Fig.~\ref{mdbz_refl_2012}b). However, by 19 UTC storms began initiating within the ensemble members which shows up in the MDBZ (Fig.~\ref{mdbz_refl_2012}d). The ensemble developed the convection more robustly by 20 UTC (Fig.~\ref{mdbz_refl_2012}f). It is hypothesized that the ensemble poorly predicted the earlier convection and thus didn't produce the outflow boundary, resulting in a later development of CI. Ensemble sensitivity analysis and evaluation of targeting regimes provides valuable information about how the forecast predictability varies due to meteorological features and what observational data could be taken to improve the forecast.
+
+
+\section{Analysis}
+
+\subsection{Maximum Composite Reflectivity}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=16pc,angle=0]{./figures/sens_surf_fhr12_mdbz_2012.pdf}\\
+  \caption{Sensitivity of maximum MDBZ in the green rectangle region at forecast hour 20 to forecasts of (a) 2-meter temperature ($dBZ$ ${}^{\circ} {\rm C^{-1}}$, shaded), (b) 2-meter dewpoint ($dBZ$ ${}^{\circ} {\rm C^{-1}}$, shaded), and (c) SLP ($dBZ$ mb${}^{-1}$, shaded) at forecast hour 12. Ensemble mean forecasts are contoured every 2 ${}^{\circ} {\rm C}$ for temperature and dewpoint and 3 mb for SLP.}
+\label{sens_surf_fhr12_mdbz_2012}
+\end{figure}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/sens_gph_fhr12_mdbz_2012.pdf}\\
+  \caption{Sensitivity of maximum MDBZ in the green rectangle region at forecast hour 20 to forecasts of GPH (dBZ $m^{-1}$, shaded) at forecast hour 12 for levels (a)-(d) 300, 500, 700, and 850 mb. Ensemble mean forecasts of GPH contoured every 20 m.}
+\label{sens_gph_fhr12_mdbz_2012}
+\end{figure}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/sens_700t_series_mdbz_2012.pdf}\\
+  \caption{Sensitivity of maximum MDBZ in the green rectangle region at forecast hour 20 to forecasts of 700 mb temperature (dBZ ${}^{\circ} {\rm C^{-1}}$, shaded) at forecast hour (a)-(f) 3, 6, 9, 12, 15, and 18. Ensemble mean forecasts of 700 mb temperature contoured every $2^{~\circ} {\rm C}$. }
+\label{sens_700t_series_mdbz_2012}
+\end{figure}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/skewt_fhr18_2012.pdf}\\
+  \caption{Skew-T from the center of the response region at forecast hour 18.}
+\label{skewt_2012}
+\end{figure}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=16pc,angle=0]{./figures/sens_T_fhr12_mdbz_2012.pdf}\\
+  \caption{Sensitivity of maximum MDBZ in the green rectangle region at forecast hour 20 to forecasts of (a)-(c) 300, 500, and 850 mb temperature (dBZ ${}^{\circ} {\rm C^{-1}}$, shaded) at forecast hour 12. Ensemble mean forecasts of temperature contoured every $2^{~\circ} {\rm C}$. }
+\label{sens_T_fhr12_mdbz_2012}
+\end{figure}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/obtar_surf_fhr15_mdbz_2012.pdf}\\
+  \caption{Estimated variance reduction of maximum MDBZ (dBZ${}^2$, shaded) in the green rectangle region at forecast hour 20 by observing (a) 2-meter temperature and (b) dewpoint at forecast hour 15. Ensemble mean fields are contoured every $2^{~\circ} {\rm C}$.}
+\label{obtar_surf_fhr15_mdbz_2012}
+\end{figure}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/obtar_gph_fhr15_mdbz_2012.pdf}\\
+  \caption{Estimated variance reduction of maximum MDBZ (dBZ${}^2$ shaded) in the green rectangle region at forecast hour 20 by observing GPH at forecast hour 15 on vertical levels (a)-(d) 300, 500, 700, and 850 mb. Ensemble mean GPH are contoured every 20 m.}
+\label{obtar_gph_fhr15_mdbz_2012}
+\end{figure}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/obtar_700t_series_mdbz_2012.pdf}\\
+  \caption{Estimated variance reduction of maximum MDBZ (dBZ${}^2$, shaded) in the green rectangle region at forecast hour 20 by observing 700 mb temperature at forecast hours (a)-(f) 3, 6, 9, 12, 15, and 18. Ensemble mean temperature is contoured every $2^{~\circ} {\rm C}$.}
+\label{obtar_700t_series_mdbz_2012}
+\end{figure}
+
+
+
+\tab Sensitivity analysis was computed for various surface and upper-air variables. What will be discussed further is the most important findings about what variables convection forecast metrics are most sensitive too and why they are related. MDBZ at forecast hour 20 is chosen as a response function due to its direct correlation to the initiation of storms and its application to real-time forecasting. Because the forecast metric must be scalar, max MDBZ from each ensemble member is computed in the green-rectangular region as seen in all Figures in this section and averaged together to form the scalar forecast metric. For surface variables, CI was most sensitivity to 2-meter temperature fields downstream of the response region over southeast Texas and adjacent locales eight hours prior to CI, at forecast hour 12 (Fig.~\ref{sens_surf_fhr12_mdbz_2012}a). A positive sensitivity to 2-meter dewpoint existed in a similar southeast Texas region (Fig.~\ref{sens_surf_fhr12_mdbz_2012}b), where moisture advection northward was evident from earlier surface analyses (Fig.~\ref{ci_panel_2012}). Both of these findings suggest that MDBZ is sensitive to the stability and moisture quantity of air being advected into the response region. Less stable and more moisture laden air would favor stronger convection by forecast hour 20.  It is much less clear for instance, how CI is sensitive to SLP where regions of positive and negative sensitivity cohabit a weak surface low (Fig.~\ref{sens_surf_fhr12_mdbz_2012}c). Generally, negative SLP sensitivity is evident to the southwest of the response region with positive sensitivity to the east and farther west. It is possible that the sensitivity fields are indicating that a stronger magnitude or positional shift of the surface pressure center would result in stronger convection. However, it is more likely in this case that statistical correlations discovered through ESA are not dynamically relatable for SLP to MDBZ. Similar statements can be made for various sensitivity features in the 2-meter temperature and dewpoint fields well beyond the response region where dynamical relationships do not make sense.
+
+\tab Farther aloft, MDBZ is considerably sensitive to GPH and temperature fields. Sensitivity to GPH forecasts eight hours prior to CI shows both magnitude and positional sensitivities to the low center at various vertical levels (Fig.~\ref{sens_gph_fhr12_mdbz_2012}). Positive (negative) sensitivities are primarily located to the southeast/south (northwest/north) of the low center at the different levels indicating that a positional shift southward or southwestward would result in higher MDBZ. Additionally, strong positive sensitivity over southeast Texas and the Gulf Coast suggests higher GPH in this region could result in stronger convection, which is likely a result of stronger GPH gradients and increased wind speed over the response region, providing more upper level forcing for storm initiation and maintenance.
+
+\tab Temperature fields aloft illustrate sensitivities of convection to stability characteristics. At 700 mb, negatively sensitive regions are seen to propagate from West Texas at forecast hour 3 (Fig.~\ref{sens_700t_series_mdbz_2012},a) westward to the response region by forecast hour 18 (Fig.~\ref{sens_700t_series_mdbz_2012}f). Thus, the convection would be intensified at forecast hour 20 if temperatures at 700 mb were lowered, corresponding to a weakening of a temperature inversion (i.e. capping inversion) that may inhibit convective development. (Fig.~\ref{skewt_2012}) Furthermore, it can be seen that levels below and above 700 mb exhibit more stability sensitivities. At 300 and 500 mb, significant regions of negative sensitivity exist adjacent to the response region 8 hours prior to CI (Fig.~\ref{sens_T_fhr12_mdbz_2012}a,b). Positive sensitivity at 850 mb is evident to the SW of the response region and as this signal propagates northeastward, it indicates that a warming of the near surface, or below capping inversion layer, would promote more convection (Fig.~\ref{sens_T_fhr12_mdbz_2012}c). These results show that a decrease of the stability of air being advected into the response region has a positive effect on convection developing.  
+
+\tab Analysis of targeting fields, whereby additional observations placed in these locales and assimilated at analysis time would benefit the forecast, show fairly similar results to the sensitivity analysis. Targeting locations for 2-meter temperature and dewpoint observations are primarily located along the mesoscale boundary (e.g. dryline) and in upstream regions to the south and southwest of the response region (Fig.~\ref{obtar_surf_fhr15_mdbz_2012}). Similarly, targeting locations for GPH observations are primarily in the southeast corner of the low center and at lower levels, over the Gulf Coast (Fig.~\ref{obtar_gph_fhr15_mdbz_2012}). Targeting for 700 mb temperatures highlight similar regions found in the sensitivity analysis, regions emanating from West Texas that propagate westward towards the response region (Fig.~\ref{obtar_700t_series_mdbz_2012}). In general, the interesting features that convection is most sensitive too are being highlighted in the targeting fields suggesting their importance in the forecast of MDBZ.
+
+\subsection{Maximum Vertical Velocity}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/sens_surf_fhr12_maxw_2012.pdf}\\
+  \caption{Sensitivity of maximum W in the green rectangle region at forecast hour 20 to forecasts of (a) 2-meter temperature ($m s^{-1}$ ${}^{\circ} {\rm C^{-1}}$, shaded), (b) 2-meter dewpoint ($m s^{-1}$ ${}^{\circ} {\rm C^{-1}}$, shaded), (c) SLP ($m s^{-1}$ mb${}^{-1}$, shaded), and (d) 2-meter specific humidity ($m s^{-1} g kg^{-1}$, shaded) at forecast hour 12. Ensemble mean forecasts are contoured every 2 ${}^{\circ} {\rm C}$ for temperature and dewpoint, 3 mb for SLP, and 2 $g~kg^{-1}$ for specific humidity.}
+\label{sens_surf_fhr12_maxw_2012}
+\end{figure}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/obtar_surf_fhr12_maxw_2012.pdf}\\
+  \caption{Estimated variance reduction of maximum MDBZ (dBZ${}^2$, shaded) in the green rectangle region at forecast hour 20 by observing (a) 2-meter temperature, (b) 2-meter dewpoint, (c) SLP, and (d) 2-meter specific humidity at forecast hour 12. Ensemble mean fields are contoured every $2^{~\circ} {\rm C}$ for temperature and dewpoint, 3 mb for SLP, and 2 $g~kg^{-1}$ for specific humidity.}
+\label{obtar_surf_fhr12_maxw_2012}
+\end{figure}
+
+
+\tab The next variable chosen for assessment was maximum W as it is a proxy for updraft strength and may be useful for operational forecasters in determining strength of developing CI. The evaluation of maximum W as the forecast metric revealed very similar results to the composite reflectivity response function with slight differences in sensitivity and targeting magnitudes. For instance, sensitivity to surface variables related to temperature, moisture, and pressure at forecast hour 12 illustrate the same picture as that seen for MDBZ. Sensitivity to temperature exists in the southeast Texas region that is being advected into the response region near the surface (Fig.~\ref{sens_surf_fhr12_maxw_2012}a). Additionally, sensitivity in the dewpoint and specific humidity fields suggest a strong relationship between the pre-convective moisture quantity in and around the response region (Fig.~\ref{sens_surf_fhr12_maxw_2012}b,d) to W. Sensitivity behind the dryline in the specific humidity field is likely a result of small values with little variance, thus increasing that magnitude of sensitivity but only in a statistical, non-dynamical manner. Negative SLP sensitivity is once again evident to the south of the response region, reinforcing the idea that a stronger surface cyclone will result in stronger vertical velocities and more rigorous convection. Nearly identical sensitivities to upper level GPH and temperatures fields are seen for W (not shown) as they were for MDBZ. W is sensitive to the position of the low centers as well as the stability of the air being advected into the response region. 
+
+\tab Evaluation of the targeting fields also yielded similar results as those of MDBZ as the forecast metric, thus the analyses further below are abbreviated. Targeting of surface variables is primarily located along the mesoscale dryline boundary as well as sensitivity regions upstream of the response region. Moisture fields recognize the need to target along the dryline boundary (Fig.~\ref{obtar_surf_fhr12_maxw_2012}b,d). Temperature targets are favored upstream to the southwest as well as downstream to the southeast where some of the warmer air is that will be advected northwestward (Fig.~\ref{obtar_surf_fhr12_maxw_2012}a). Additionally, SLP targets are focused around central Texas, in a similar region that negative sensitivity existed (Fig.~\ref{obtar_surf_fhr12_maxw_2012}c), highlighting the likely importance of a strengthening/weaking surface low in the strengthening of W in the forecast period. Targeting for GPH and temperature aloft were nearly identical to those of MDBZ fields, targeting the southwest corner of the low center and stability regimes in the temperature fields. 
+
+\subsection{Average Vertical Wind Shear}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=16pc,angle=0]{./figures/sens_surf_fhr15_shear_2012.pdf}\\
+  \caption{Same as in Fig.~\ref{sens_surf_fhr12_mdbz_2012} but sensitivity of average vertical wind shear in the response region to 15 hour forecasts of (a) 2-meter temperature ($ms^{-1}$ ${}^{\circ} {\rm C^{-1}}$, shaded), (b) 2-meter dewpoint ($ms^{-1}$ ${}^{\circ} {\rm C^{-1}}$, shaded), and (c) SLP ($ms^{-1}$ $mb^{-1}$, shaded).}
+\label{sens_surf_fhr15_shear_2012}
+\end{figure}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/sens_gph_fhr15_shear_2012.pdf}\\
+  \caption{Same as in Fig.~\ref{sens_gph_fhr12_mdbz_2012} but sensitivity of average vertical wind shear in the response region to 15 hour GPH forecasts (shaded, $m s^{-1} m^{-1}$).}
+\label{sens_gph_fhr15_shear_2012}
+\end{figure}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/sens_T_fhr18_shear_2012.pdf}\\
+  \caption{Same as Fig.~\ref{sens_gph_fhr15_shear_2012} with forecasts of temperature at hour 18 ($m s^{-1}$ ${}^{\circ} {\rm C^{-1}}$, shaded) and ensemble means contoured every 2 ${}^{\circ} {\rm C}$.}
+\label{sens_T_fhr18_shear_2012}
+\end{figure}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/obtar_td2_series_shear_2012.pdf}\\
+  \caption{Estimated variance reduction of average vertical wind shear ($m^2 s^{-2}$, shaded) in the green rectangle region at forecast hour 20 by observing 2-meter dewpoint at forecast hours (a)-(f) 3, 6, 9, 12, 15, and 18. Ensemble mean fields are contoured every $2^{~\circ} {\rm C}$.}
+\label{obtar_td2_series_shear_2012}
+\end{figure}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/obtar_gph_fhr15_shear_2012.pdf}\\
+  \caption{Same as in Fig.~\ref{obtar_gph_fhr15_mdbz_2012} but with sensitivity of average vertical wind shear in the response region ($m^2 s^{-2}$, shaded).}
+\label{obtar_gph_fhr15_shear_2012}
+\end{figure}
+
+\tab ESA applied to 0-6 km vertical wind shear forecasts yields a slightly different picture than for MDBZ or W while still holding qualitative importance and realistic understanding. For surface variables, average vertical shear at forecast hour 20 is positively (negatively) sensitive to 2-meter temperature within a cooler (warmer) air mass west (south) of the response regime (Fig.~\ref{sens_surf_fhr15_shear_2012}a). This may indicate that a decrease of the temperature gradient across central Texas, albeit weak as it already is, would provide more stability in the region and decrease wind speeds near the surface, subsequently increasing the vertical shear magnitude. A similar pattern is seen in the 2-meter dewpoint field (Fig.~\ref{sens_surf_fhr15_shear_2012}b) whereby a dipole of positive and negative sensitivity exists that suggests decreasing the magnitude of the dewpoint gradient will increase the shear forecast. The SLP sensitivity field shows that a shift in the central low pressure over central Texas to the east or west, or generally deepening of pressure across this portion of the domain, would additionally result in a stronger shear forecast (Fig.~\ref{sens_surf_fhr15_shear_2012}c). 
+
+\tab Additionally, features aloft indicate sensitivity of shear to placement of the upper level low, as seen with the previous response functions. A displacement of the low eastward, or its deepening, would result in stronger shear, as illustrated in the 300, 500, and 700 mb sensitivity (Fig.~\ref{sens_gph_fhr15_shear_2012}a,b,c). At 850 mb, generally the sensitivity suggests a deepening of the cyclone is all that is needed to increase the shear profile in the response region (Fig.~\ref{sens_gph_fhr15_shear_2012}d). Moving the position of the cyclone to affect the shear could be a direct consequence of moving the jet max at each level to be more inline with the response region. The shear forecast is also sensitive to stability as has been previously noted. The warming of upper levels at 300 and 500 mb to the south, southwest, and within the response region (Fig.~\ref{sens_T_fhr18_shear_2012}a,b) accompanied by the cooling of 700 and 850 mb levels (Fig.~\ref{sens_T_fhr18_shear_2012}c,d) would promote a more stable atmosphere in the response region. This stability would prevent stronger winds aloft from being mixed down and support slower winds at the surface, thus increasing the vertical wind shear profile. However, this would also inhibit convective development and the evaluation of shear as a forecast metric with ESA may provide more useful in determining storm mode rather than CI. 
+
+\tab The improvement to shear forecasts may ultimately come from observing the dryline position. Throughout the forecast evolution, the dryline is highlighted for a target locations to improve the shear forecast. Targeting locations are seen to exist along the entire extent of the dryline beginning from forecast initialization until CI occurrence (Fig.~\ref{obtar_td2_series_shear_2012}). This certainly points to the importance of the dryline's mesoscale forcing attributes and it's relevance to storm mode through shear forecasts. Furthermore, targeting aloft is dominated by the need to target GPH observations to the northeast and southeast of the central low (Fig.~\ref{obtar_gph_fhr15_shear_2012}). This targeting property highlights the need to target for cyclone position, as the targeting regime is well displaced from the center location, at least at the 300 and 500 mb levels (Fig.~\ref{obtar_gph_fhr15_shear_2012}a,b). At 700 and certainly 850 mb, the low center becomes an important aspect for targeting. 
+
+\subsection{Targeted Observations}
+
+\tab Previously, a subjective interpretation of targeted observation locations for various surface and upper air variables was presented for the three forecast metrics evaluated. Experiments were carried out to assess the impact of assimilating additional observations from locations that overlapped with WTM stations. Each WTM station was assigned target values for 2-meter temperature observations through interpolation of the targeting fields calculated through ESA. The station with the largest value was selected and its 2-meter temperature observation was added to the observation set and observations were re-assimilated at analysis time. A new forecast was produced and the change in variance was evaluated against the expected change given by the target value. This procedure was repeated for 3 station observations. In situations where stations had no observations for that time period (e.g. was not constructed, missing data), the station was thrown out for consideration. Additionally, if a station was selected as the 1st best location, and also the best site in the subsequent forecast, it was included only the first time and the 2nd best location was chosen for the next observation. 
+
+\tab The experiments revealed similar results as those found by \cite{Hilletal2013} where the expected variance reduction of the forecast metric did not match the actual change in the metric error. (EXAMPLE PLOT GIVEN)
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/est_vs_act.pdf}\\
+  \caption{Estimated versus actual change in forecast metric variance for all metrics considered. Dashed line is perfect correlation. }
+\label{est_vs_act}
+\end{figure}
+
+(ELABORATE WHEN THE RESULTS ARE FULLY DONE FOR ALL FORECAST METRICS AND THE BENCHMARK ONES.)
+
+\chapter{15 May 2013 Case Study}
+
+\section{Synoptic Evolution and Forecast Evaluation}
+
+\begin{figure}[!b]
+  \centering
+  \noindent\includegraphics[width=35pc,angle=0]{./figures/dewpoint_series.pdf}\\
+  \caption{Ensemble mean 2-meter dew point temperature (F, shaded and contoured every 3 F) at forecast hours (a)-(d) 6, 12, 18, and 24.}
+\label{dewpoint_series}
+\end{figure}
+
+\tab An ensemble of forecasts was generated beginning 00 UTC 15 May 2013 and ending 12 UTC 16 May 2013 to capture dryline-initiated severe storms in north Texas that occurred on 00 UTC of the 16th that resulted in seven reported tornadoes and 72 total reports of severe weather per the Storm Prediction Center storm report log.\footnote{$http://www.spc.noaa.gov/climo/reports/130515\_rpts.html$} A dryline positioned in west Texas during the early period of the forecast (Fig. \ref{dewpoint_series}a,b) propagated downstream into central (Fig. \ref{dewpoint_series}c) and later north-central Texas by forecast hour 24 (Fig. \ref{dewpoint_series}d) where convection developed during the afternoon and evening hours. Aloft at forecast hour 24, flow was characterized by westerly to southwesterly flow at 300 mb associated with a positively-tilted low pressure trough seen in the GPH over Oklahoma (Fig. \ref{hgts_fhr24}a). Similarly at 500 and 700 mb, westerly and southwesterly flow is evident over north Texas with a tilted trough and apparent shortwave east of the trough base and a shortwave propagating through the trough base (Fig. \ref{hgts_fhr24}b,c). Modest instability aloft is also evident with 500 mb temperatures less than $-15^{\circ} {\rm C}$ and a weak or no capping provided by the 700 mb temperatures between 3-$7^{\circ}{\rm C}$ (Fig.~\ref{skewt_2013}). Closer to the surface at 850 mb, the low pressure is displaced to the west, ejecting from the Rocky Mountain terrain with a slightly stronger cap to suppress surface-based convection over north Texas with temperatures hovering around $15^{\circ} {\rm C}$ (Fig. \ref{hgts_fhr24}d). With southerly winds present at 850 mb, modest directional shear and strong speed shear, with 50+ knot winds at 300 mb, storms that initiate in this environment would appear to favor supercell mode, not uncommon along dryline segments. 
+
+\begin{figure}[!bt]
+  \centering
+  \noindent\includegraphics[width=35pc,angle=0]{./figures/hgts_fhr24.pdf}\\
+  \caption{Ensemble mean GPH (m, contoured every 20 m) valid at forecast hour 24 for (a)-(d) 300, 500, 700, and 850 mb levels with temperature (C, shaded) and wind speed (knots, barbs).}
+\label{hgts_fhr24}
+\end{figure}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=35pc,angle=0]{./figures/skewt_fhr21_2013.pdf}\\
+  \caption{Skew-T from the center of the response region at forecast hour 21}
+\label{skewt_2013}
+\end{figure}
+
+\tab Convection developed in the early afternoon hours around 1830 UTC 15 May over southern Oklahoma into northern Texas (Fig. \ref{refl_series}a). The majority of this early convection was non-severe and a result of the upper level forcing present with the previously mentioned shortwave trough. By 21 UTC, convection was becoming more rigorous over southern Oklahoma with support from daytime heating (Fig. \ref{refl_series}b). Sufficient convergence along the dryline in north-central Texas, and forcing aloft from the aforementioned shortwave supported the formation of severe storms along the dryline by 23 UTC (Fig. \ref{refl_series}c). Storms would become super cellular through the early evening with sufficient instability and shear as previously mentioned to sustain the individual storms (Fig. \ref{refl_series}d). One supercell produced an EF-4 (Enhanced Fujita) rated tornado that hit the town of Granbury, TX. 
+
+\begin{figure}[!htb]
+  \centering
+  \noindent\includegraphics[width=35pc,angle=0]{./figures/refl_series.pdf}\\
+  \caption{Radar composite images (dBZ, shaded) from the southern plains on 15 May 2013 at (a)-(c) 1830, 21, 23, and 0100 UTC 16 May 2013. Data obtained from the archive of images available through http://locust.mmm.ucar.edu}
+\label{refl_series}
+\end{figure}
+
+\tab At forecast hour 25, a shortwave was still evident with strong southwesterly flow at 850 mb (Fig. \ref{ci_panel}a). At the surface, dew points had climbed into the low 60's F (Fig. \ref{ci_panel}b) and weak heating had occurred (Fig. \ref{ci_panel}c) due to lingering warm sector rainfall that had spread eastward into eastern Texas and western Arkansas. Fig. \ref{ci_panel}c shows ensemble mean SLP with a central low located over west Texas and assumed cyclogenesis occurring west of the initiated dryline convection. Ensemble mean MDBZ fields showed an enhancement of reflectivity into central Texas (Fig. \ref{ci_panel}d) with the previously mentioned warm sector precipitation displaced well to the east.  
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=35pc,angle=0]{./figures/ci_panel.pdf}\\
+  \caption{(a) Ensemble mean 850 mb GPH (m, contoured every 20 m) and temperature (C, shaded). (b) Ensemble mean 2-meter dew point (F, shaded and contoured every 3 F). (c) Ensemble mean 2-meter temperature (F, shaded), mean SLP (mb, contoured every 2 mb), and 10-meter wind speed (knots, barbs). (d) Ensemble mean MDBZ (dBZ, shaded). Each panel is valid at forecast hour 25.}
+\label{ci_panel}
+\end{figure}
+
+\tab Within the ensemble, CI occurred near forecast hour 25 (1 UTC 16 May) which was approximately 2 hours later than the observations indicated. Fig. \ref{mdbz_series}a-c shows the progression of the ensemble mean MDBZ from forecast hours 23-25 which clearly illustrates the lack of convection produced at forecast hour 23 compared to the observations (Fig. \ref{refl_series}c), a slight hint at CI at forecast hour 24, and a more robust signal at hour 25. The robustness of the signal in MDBZ at forecast hour 25 is severely limited by the averaging. Individual ensemble members did produce convection along the dryline in central and northern Texas (Fig. \ref{refl_members}). 
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=17pc,angle=0]{./figures/mdbz_series.pdf}\\
+  \caption{Ensemble mean MDBZ (dBZ, shaded) valid at forecast hours (a)-(c) 23, 24, and 25.}
+\label{mdbz_series}
+\end{figure}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=23pc,angle=0]{./figures/refl_members.pdf}\\
+  \caption{Simulated MDBZ (dBZ, shaded) from various ensemble members valid at forecast hour 25. Ensemble members included from the 50-member set are (a)-(h) 6, 12, 13, 24, 27, 29, 45, and 50. }
+\label{refl_members}
+\end{figure}
+
+\section{Analysis}
+
+\subsection{Maximum Composite Reflectivity}
+
+\begin{figure}[!bt]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/sens_td2_slp_fhr22.pdf}\\
+  \caption{Sensitivity of maximum MDBZ in the green rectangle region at forecast hour 24 to forecasts of (a) 2-meter dewpoint (dBZ ${}^{\circ} {\rm C^{-1}}$, shaded) and (b) SLP (dBZ $ {\rm mb^{-1}}$, shaded) at forecast hour 22. Ensemble mean forecasts of 2-meter dewpoint and SLP contoured every $2^{~\circ} {\rm C}$ and 3 mb, respectively.}
+\label{sens_td2_slp_fhr22}
+\end{figure}
+
+\tab The first forecast metric chosen was maximum MDBZ within a specific region that exhibited CI at forecast hour 24, seen as the green rectangle in Figures throughout this section. Sensitivity of surface variables 2-meter dewpoint and SLP show dynamical elements related to dryline position and surface pressure deepening along a pressure trough. At forecast hour 22, a dipole in sensitivity is located to the southwest of the forecast metric region (Fig.~\ref{sens_td2_slp_fhr22}a) with positive (negative) sensitivity to the west (east) indicating that a shift of the dryline to the west would result in a positive change in MDBZ. A strong negative sensitivity in SLP in the position of a surface trough (Fig.~\ref{sens_td2_slp_fhr22}b) illustrates that a deepening of the surface pressure would result in higher reflectivity at the forecast metric verification time. Additionally, a weak dipole in SLP sensitivity is evident over the Texas panhandle and New Mexico region where a shift in the surface low pressure southward would result in a greater MDBZ. 
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/sens_gph_fhr10.pdf}\\
+  \caption{Sensitivity of maximum MDBZ in the green rectangle region at forecast hour 24 to forecasts of GPH (dBZ $m^{-1}$, shaded) at forecast hour 20 for levels (a)-(d) 300, 500, 700, and 850 mb. Ensemble mean forecasts of GPH contoured every 20 m.}
+\label{sens_gph_fhr10}
+\end{figure}
+
+\tab Present aloft is a dipole sensitivity in the GPH fields at 300, 500, 700, and 850 mb at forecast hour 10 where a positional shift of the upper level troughs would impact the forecast metric (Fig.~\ref{sens_gph_fhr10}). Interesting to note a stark change in sensitivity patterns by forecast hour 20 aloft with a weak dipole sensitivity at 300 mb which is not seen at lower levels. Futhermore, strong negative sensitivity is analyzed at all levels near the position of the upper level low and coincident shortwave (Fig~\ref{sens_gph_fhr20}). This hints at the relationship between MDBZ and upper level forcing, where a stronger shortwave would result in stronger storms or more of them in the forecast metric region. Additionally, a strong positive sensitivity is noted at 850 mb collocated with an upper level ridge, indicating the potential for more storms with a stronger ridge south of the trough that may act to amplify the trough further. 
+
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/sens_gph_fhr20.pdf}\\
+  \caption{Same as Fig.~\ref{sens_gph_fhr10} with sensitivity to GPH at forecast hour 20. }
+\label{sens_gph_fhr20}
+\end{figure}
+
+\tab The forecast metric also exhibits sensitivity to temperatures aloft at 700 mb (Fig~\ref{sens_700mbT_series}). Early on in the forecast, negative sensitivity exists over West Texas and is advected eastward through the forecast period. By forecast hour 21 (Fig~\ref{sens_700mbT_series}e) a robust negative sensitivity signal is present over the forecast metric region. This sensitivity indicates potentially two things that are interrelated: a reduction in cap strength that may prohibit convection and a decrease in stability with cooler temperatures aloft corresponding to greater forecast reflectivity. Looking above this potential cap layer, and below, it can be seen that positive sensitivity exists at 850 mb and negative sensitivity at 500 and 300 mb (Fig.~\ref{sens_T_alllevs_fhr15}). This would indicate that indeed the cap strength is being seen in the 700 mb sensitivity fields over West Texas, where a reduction in the 700 mb temperatures would reduce the cap strength and facilitate increased convection. Additionally, an overall decrease in stability would allow for stronger or more convection to occur. 
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/sens_700mbT_series.pdf}\\
+  \caption{Sensitivity of maximum MDBZ in the green rectangle region at forecast hour 24 to forecasts of 700 mb temperature (dBZ ${}^{\circ} {\rm C^{-1}}$, shaded) at forecast hour (a)-(f) 9, 12, 15, 18, 21, and 24. Ensemble mean forecasts of 700 mb temperature contoured every $2^{~\circ} {\rm C}$. }
+\label{sens_700mbT_series}
+\end{figure}
+
+\begin{figure}[!b]
+  \centering
+  \noindent\includegraphics[width=16pc,angle=0]{./figures/sens_T_3levs_fhr21.pdf}\\
+  \caption{Sensitivity of maximum MDBZ in the green rectangle region at forecast hour 24 to forecasts of (a)-(c) 300, 500, and 850 mb temperature (dBZ ${}^{\circ} {\rm C^{-1}}$, shaded) at forecast hour 21. Ensemble mean forecasts of temperature contoured every $2^{~\circ} {\rm C}$. }
+\label{sens_T_alllevs_fhr15}
+\end{figure}
+
+\tab Targeting regions at the surface indicate sparse locations that 2-meter temperature, 2-meter dew point, and SLP observations, taken at initialization, may improve the forecast (Fig.~\ref{obtar_surfvars_fhr0}). 2-meter temperature target locations are primarily located over Mexico to the south and to a small extent, southern Texas (Fig.~\ref{obtar_surfvars_fhr0}a). Target locations for 2-meter dew point are relatively small in areal coverage but there are numerous locations (Fig.~\ref{obtar_surfvars_fhr0}b). Similarly to dew point, SLP target locations have a large spatial variability throughout the domain (Fig.~\ref{obtar_surfvars_fhr0}c). Conversely, SLP target locations have a much larger magnitude than either 2-meter dew point or temperature, indicating the relative importance of SLP observations over temperatures.   
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=15pc,angle=0]{./figures/obtar_surfvars_fhr0.pdf}\\
+  \caption{Estimated variance reduction of maximum MDBZ (dBZ${}^2$, shaded) in the green rectangle region at forecast hour 24 by observing (a) 2-meter temperature (${}^{\circ}$C, ensemble mean contoured), (b) 2-meter dew point (${}^{\circ}$C, ensemble mean contoured), and (c) SLP (mb, ensemble mean contoured) at forecast hour zero.} 
+\label{obtar_surfvars_fhr0}
+\end{figure}
+
+\tab While the targeting regions at forecast hour zero are not robust, and don't exhibit clear signals of locations to target, there are clear signals later on in the forecast for regions that, if observed, may reduce the uncertainty in the forecast for MDBZ. By forecast hour 18, a surface pressure trough develops, as discussed previously, which is highlighted in the targeted fields (Fig.~\ref{obtar_slp_series}a). This signal persists through the remainder of the forecast, through forecast hours 21 (Fig~\ref{obtar_slp_series}b) and 24 (not shown). This suggests that closer to CI, observing the surface pressure fields and corresponding developing surface trough, may provide valuable data to improve the forecast of CI and the subsequent severe convection. 
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/obtar_slp_series.pdf}\\
+  \caption{Estimated variance reduction of maximum MDBZ (shaded, dBZ${}^2$) in the green rectangle region at forecast hour 24 by observing SLP at forecast hours (a) 18 and (b) 21. Ensemble mean fields are contoured every 3 mb.}
+\label{obtar_slp_series}
+\end{figure}
+
+\tab Moisture aloft at forecast hour five at 500 mb is characterized by a large region of positive sensitivity over southern Texas and eastern Mexico within the region of higher dew points and moisture content (Fig~\ref{tarsens_td_fhr5}a). This is accompanied by a large swath of negative sensitivity extending from West Texas to northeast Texas. This swath of negative sensitivity is also indicated in the targeted fields for 500 mb dewpoint while the strong positive sensitivity signal has a relative lull in targeting potential (Fig~\ref{tarsens_td_fhr5}b). This result is indicative of the sensitivity of the MDBZ forecast to antecedent mid-level clouds from early morning convection. The targeting field further implies that observing this moisture level would be beneficial to the forecast well in advance of CI occurrence. Furthermore, targeting regions for GPH at 500 mb show strong coherency from early on in the forecast until CI occurs over central Texas (Fig~\ref{obtar_500gph_series}). Three targeted regimes exist: one around the trough center location, another downstream of the trough into southeast Texas, associated with early period convection, and a third that develops towards the end of the forecast period into Arkansas, Louisiana, and northeastern Texas. The targeting regions within the trough center are directly related to observing the low center itself, determining it's strength and position that may impact the forecast.  Conversely, the targeting regions downstream are directly related to previous convection that moved northeastward through the forecast period, as can be seen in Figures~\ref{refl_series} and \ref{mdbz_series}. 
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/tarsens_td_fhr5.pdf}\\
+  \caption{(a) Sensitivity of maximum MDBZ in the green rectangle region at forecast hour 24 to forecasts of 500 mb dewpoint (dBZ ${}^{\circ}C^{-1}$, shaded) at forecast hour 5. (b) Estimated variance reduction of maximum MDBZ (dBZ${}^2$, shaded) in the green rectangle region at forecast hour 24 by observing 500 mb dewpoint at forecast hour 5. Ensemble mean 500 mb dewpoint contoured every 2 ${}^{\circ}$C.}
+\label{tarsens_td_fhr5}
+\end{figure}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/obtar_500gph_series.pdf}\\
+  \caption{Estimated variance reduction of maximum MDBZ (dBZ${}^2$, shaded) in the green rectangle region at forecast hour 24 by observing 500 mb GPH at forecast hours (a)-(d) 6, 12, 18, and 24. Ensemble mean GPH is contoured every 20 m at each respective forecast time.}
+\label{obtar_500gph_series}
+\end{figure}
+
+\subsection{Maximum Vertical Velocity}
+
+\tab The next variable chosen for the forecast metric is maximum W at forecast hour 24 in the same region as MDBZ was defined. Very similar sensitivities to surface variables is seen when comparing maximum W to MDBZ. Close to CI, at forecast hour 22, sensitivity to 2-meter temperature, 2-meter dewpoint, and SLP exhibit the same signature as MDBZ (Fig. \ref{sens_surf_fhr20_maxw}). A positive signal is present upstream of the response region in the 2-meter temperature sensitivity (Fig. \ref{sens_surf_fhr20_maxw}a) illustrating that a warming of the surface, or reduced stability, would result in stronger vertical velocities two hours later. A similar dipole in the 2-meter dewpoint sensitivity is seen over the dryline (Fig.~\ref{sens_surf_fhr20_maxw}b) south of the response region, indicating a positional shift of the dryline westward would result in stronger updrafts. Furthermore, negative sensitivity to SLP exists along a surface pressure trough just prior to CI (Fig.~\ref{sens_surf_fhr20_maxw}c) with a dipole in vicinity of the central low pressure. Primarily, surface sensitivities exist just prior to CI, and their coherency does not extend beyond 6-12 hours before the initiation of storms. 
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=16pc,angle=0]{./figures/sens_surf_fhr20_maxw.pdf}\\
+  \caption{Sensitivity of maximum W in the green rectangle region at forecast hour 24 to forecasts of (a) 2-meter temperature ($m s^{-1}$ ${}^{\circ} {\rm C^{-1}}$, shaded), (b) 2-meter dewpoint ($m s^{-1}$ ${}^{\circ} {\rm C^{-1}}$, shaded), and (c) SLP ($m s^{-1}$ mb${}^{-1}$, shaded) at forecast hour 22. Ensemble mean forecasts are contoured every 2 ${}^{\circ} {\rm C}$ for temperature and dewpoint and 3 mb for SLP.}
+\label{sens_surf_fhr20_maxw}
+\end{figure}
+
+\tab The sensitivity similarities coexist aloft as well. At forecast hour 18, dipole sensitivities are present at all vertical levels analyzed for GPH (Fig.~\ref{sens_gph_fhr18_maxw}). It is also clear that negative sensitivities are present in the central low region aloft, indicative of magnitude sensitivities which are most pronounced at 300 and 500 mb (Fig.~\ref{sens_gph_fhr18_maxw}a,b). It should be noted that the magnitude of sensitivities are a factor of ten less than those for MDBZ. Additionally, at 850 mb a positive sensitivity is present over southeast Texas in the region of a shortwave ridge, similarly shown in Figure~\ref{sens_gph_fhr20}. 
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/sens_gph_fhr18_maxw.pdf}\\
+  \caption{Sensitivity of maximum W in the green rectangle region at forecast hour 24 to forecasts of GPH ($m s^{-1}$ $m^{-1}$, shaded) at forecast hour 18 for levels (a)-(d) 300, 500, 700, and 850 mb. Ensemble mean forecasts of GPH contoured every 20 m.}
+\label{sens_gph_fhr18_maxw}
+\end{figure}
+
+\tab Sensitivity to temperatures aloft indicate sensitivity of maximum velocity to stability of advection regions as seen previously. Negative sensitivity is present at 300, 500, and 700 mb west of the response region (Fig.~\ref{sens_T_fhr21_maxw}a,b,c) indicating that cooler temperatures in this region would result in stronger vertical velocities. This result alone wouldn't suggest a sensitivity to stability but at 850 mb, sensitivities are positive in this region (Fig.~\ref{sens_T_fhr21_maxw}d). Thus, an increase in temperatures below the cap level, estimated to be near 700 mb, and a decrease in temperature above the cap would result in increased vertical velocities, consistent with decreasing stability in the region advected into the CI region. A decrease in temperatures aloft and increase in temperatures near the surface would provide a larger amount of convective available potential energy (CAPE) for storms and thus a larger W due to buoyancy, further elaborated by
+
+\begin{align}
+B = g \frac{T_v (z) - \overline{T_v (z)}}{ \overline{T_v (z)}},
+\end{align}
+
+where B is buoyancy, g is gravitational acceleration, $T_v (z)$ is a parcel's virtual temperature and $\overline{T_v (z)}$ is the virtual temperature of the environment. With a larger parcel temperature by warming the surface, buoyancy should increase with decreased stability, consistent with the sensitivity findings. 
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/sens_T_fhr21_maxw.pdf}\\
+  \caption{Same as Fig.~\ref{sens_gph_fhr18_maxw} with forecasts of temperature at hour 21 ($m s^{-1}$ ${}^{\circ} {\rm C^{-1}}$, shaded) and ensemble means contoured every 2 ${}^{\circ} {\rm C}$.}
+\label{sens_T_fhr21_maxw}
+\end{figure}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/sens_700t_series_maxw.pdf}\\
+  \caption{Sensitivity of maximum W in the green rectangle region at forecast hour 24 to forecasts of 700 mb temperature ($m s^{-1}$ ${}^{\circ} {\rm C^{-1}}$, shaded) at forecast hours (a)-(f) 3, 6, 9, 12, 15, and 18. Ensemble mean forecasts of 700 mb temperature contoured every $2^{~\circ} {\rm C}$. }
+\label{sens_700t_series_maxw}
+\end{figure}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/obtar_surf_series_maxw.pdf}\\
+  \caption{Estimated variance reduction of maximum W ($m^2 s^{-2}$, shaded) in the green rectangle region at forecast hour 24 by observing (a),(c),(e) 2-meter temperature and (b),(d),(f) 2-meter dewpoint at hours (top) 12, (middle) 18, and (bottom) 24 into the forecast. Ensemble mean fields are contoured every $2^{~\circ} {\rm C}$.}
+\label{obtar_surf_series_maxw}
+\end{figure}
+
+\tab At 700 mb, this stability sensitivity is coherent to early hours of the forecast. The negative sensitivity extends to far West Texas (Fig.~\ref{sens_700t_series_maxw}) through 21 hours prior to CI. With westerly to southwesterly flow at 700 mb, it is reasonable to suggest this West Texas sensitivity is advected into the response region throughout the forecast. While sensitivity to 700 mb temperature is indicative of stability characteristics that could influence the forecast of W, it may also pertain to strength of a capping inversion that may prevent CI occurrence. A negative sensitivity upstream of and being advected into the response region would indicate a reduction of the cap strength leading to more rigorous convection or sooner CI. 
+
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/obtar_slp_series_maxw.pdf}\\
+  \caption{Estimated variance reduction of maximum W ($m^2 s^{-2}$, shaded) in the green rectangle region at forecast hour 24 by observing SLP at forecast hours (a)-(d) 15, 18, 21, and 24. Ensemble mean fields are contoured every 3 mb.}
+\label{obtar_slp_series_maxw}
+\end{figure}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/obtar_gph_fhr18_maxw.pdf}\\
+  \caption{Estimated variance reduction of maximum W ($m^2 s^{-2}$, shaded) in the green rectangle region at forecast hour 24 by observing GPH at forecast hour 18 on vertical levels (a)-(d) 300, 500, 700, and 850 mb. Ensemble mean GPH is contoured every 20 m.}
+\label{obtar_gph_fhr18_maxw}
+\end{figure}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/obtar_700t_series_maxw.pdf}\\
+  \caption{Estimated variance reduction of maximum W ($m^2 s^{-2}$, shaded) in the green rectangle region at forecast hour 24 by observing 700 mb temperature at forecast hours (a)-(f) 9, 12, 15, 18, 21, and 24. Ensemble mean temperature is contoured every $2^{~\circ} {\rm C}$.}
+\label{obtar_700t_series_maxw}
+\end{figure}
+
+\tab Targeting fields for W are additionally similar to targeting fields for MDBZ as was noted for the previously analyzed case. At the surface, locations for 2-meter temperature observations are identified to the south and southeast of the response region within 12 hours of forecast CI (Fig.~\ref{obtar_surf_series_maxw}a,c,e). Dewpoint observations are indicated to be most useful along the dryline as it develops during the forecast to the south and southwest of the response region (Fig.~\ref{obtar_surf_series_maxw}b,d,f). Targeting this mesoscale boundary is a consistent feature in the targeting fields for other surface moisture variables, such as specific humidity (not shown). Targeting SLP observations for improved forecasts of W is emphasized in vicinity of the response region around forecast hour 15 and in eastern New Mexico (Fig.~\ref{obtar_slp_series_maxw}a). Three hours later, targeting regions are located in the surface pressure trough (Fig.~\ref{obtar_slp_series_maxw}b), additionally highlighted in the sensitivity fields. This signal continues by forecast hour 21 with an additional target region into Oklahoma and Arkansas, where a surface ridge has developed (Fig.~\ref{obtar_slp_series_maxw}c). It appears that observing this ridge is important to the forecast of convection 3 hours later. Finally, observing SLP within the response region at CI time (Fig.~\ref{obtar_slp_series_maxw}d) is also signified, which seems appropriate. Obviously, if actual observing is put into place, targeting at CI is not ideal due to the need to assimilate those observations into a future assimilation time and running a free forecast from that analysis. 
+
+\tab Targeting aloft for GPH highlights the similar features found when targeting to reduce MDBZ variance. Strong targeting signals are found in the base of the 300 and 500 mb trough, within the trough center, and downstream in vicinity of the shortwave (Fig.~\ref{obtar_gph_fhr18_maxw}a,b) 6 hours prior to CI. At lower levels, targeting regions still exist in West Texas and southeast Texas within range of the shortwave and trough base at 700 and 850 mb (Fig.~\ref{obtar_gph_fhr18_maxw}c,d). With these targets, it would be plausible to target the forecast of W with mobile radiosondes that could be deployed in west or southern Texas to measure the height of pressure surfaces. Targeting for 700 mb temperatures also locates regions in west and southern Texas that would be helpful to improve the forecast of W. Targets are identified 15 hours prior to CI (forecast hour 9) in a variety of locales in central and southern Texas (Fig.~\ref{obtar_700t_series_maxw}a). These regions are coherent in time and space through the forecast with largest target values downstream of the response region (Fig.~\ref{obtar_700t_series_maxw}b-f). Regions in West Texas are also identified which further supports to application of real-time observing with radiosondes.   
+
+\subsection{Average Vertical Wind Shear}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=16pc,angle=0]{./figures/sens_surf_fhr18_shear.pdf}\\
+  \caption{Sensitivity of average vertical wind shear in the green rectangle region at forecast hour 24 to forecasts of (a)-(c) 2-meter temperature ($ms^{-1} {}^{\circ} {\rm C^{-1}}$, shaded), 2-meter dewpoint ($ms^{-1} {}^{\circ} {\rm C^{-1}}$, shaded), and SLP ($ms^{-1} mb^{-1}$, shaded) at hour 18. Ensemble mean forecasts are contoured every $2^{~\circ} {\rm C}$ for temperature and dewpoint and every 3 mb for SLP.}
+\label{sens_surf_fhr18_shear}
+\end{figure}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/sens_gph_fhr18_shear.pdf}\\
+  \caption{Sensitivity of average vertical wind shear in the green rectangle region at forecast hour 24 to forecasts of GPH ($ms^{-1}$ $m^{-1}$, shaded) at forecast hour 18 for levels (a)-(d) 300, 500, 700, and 850 mb. Ensemble mean forecasts of GPH contoured every 20 m.}
+\label{sens_gph_fhr18_shear}
+\end{figure}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/sens_700t_series_shear.pdf}\\
+  \caption{Same as Fig.~\ref{sens_700t_series_maxw} with the response function being average vertical wind shear.}
+\label{sens_700t_series_shear}
+\end{figure}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/sens_T_fhr21_shear.pdf}\\
+  \caption{Same as Fig.~\ref{sens_T_fhr21_maxw} with the response function being average vertical wind shear.}
+\label{sens_T_fhr21_shear}
+\end{figure}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/obtar_surf_fhr21_shear.pdf}\\
+  \caption{Estimated variance reduction of average vertical wind shear ($m^2 s^{-2}$, shaded) in the green rectangle region at forecast hour 24 by observing (a) 2-meter temperature and (b) SLP at forecast hour 21. Ensemble mean fields are contoured every $2^{~\circ} {\rm C}$ and 3 mb, respectively.}
+\label{obtar_surf_fhr21_shear}
+\end{figure}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/obtar_td2_series_shear.pdf}\\
+  \caption{Estimated variance reduction of average vertical wind shear ($m^2 s^{-2}$, shaded) in the green rectangle region at forecast hour 24 by observing 2-meter dewpoint at forecast hours (a)-(d) 12, 15, 18, and 21. Ensemble mean fields are contoured every $2^{~\circ} {\rm C}$.}
+\label{obtar_td2_series_shear}
+\end{figure}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/obtar_gph_fhr18_shear.pdf}\\
+  \caption{Same as Fig.~\ref{obtar_gph_fhr18_maxw} with the response function being average vertical wind shear.}
+\label{obtar_gph_fhr18_shear}
+\end{figure}
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/obtar_wind_fhr12_shear.pdf}\\
+  \caption{Estimated variance reduction of average vertical wind shear ($m^2 s^{-2}$, shaded) in the green rectangle region at forecast hour 24 by observing wind speed at forecast hour 12 on vertical levels (a)-(d) 300, 500, 700, and 850 mb. Ensemble mean wind speeds are contoured every 5 $ms^{-1}$.}
+\label{obtar_wind_fhr12_shear}
+\end{figure}
+
+\tab Another critical variable for convection forecasting along the dryline is vertical wind shear and it's relation to storm organization and mode. It has been chosen at the same time and same region as the previous forecast metrics for ESA analysis from 0 to 6 km. Shear is shown to be sensitive to surface variables in similar positions as the previous metrics. Negative sensitivity to 2-meter temperature is evident to the west of the response region six hours prior to the forecast metric verification time (Fig.~\ref{sens_surf_fhr18_shear}a) indicating that a cooler surface temperate and stronger stability would result in a stronger forecast of shear. Sensitivity to 2-meter dewpoint is confined along the mesoscale dryline boundary upstream of the response region (Fig.~\ref{sens_surf_fhr18_shear}b). This result shows the sensitivity to dryline magnitude and potential increased convergence along the dryline to enhance the shear forecast. Furthermore, positive sensitivities to SLP exist along the surface pressure trough prior to CI, opposite sign of the previous forecast metrics analysis (Fig.~\ref{sens_surf_fhr18_shear}c). Negative sensitivity exists in the surface low pressure region as well, indicating that the forecast of shear is sensitive to the surface pressure gradient.  
+
+\tab The forecast of vertical wind shear is also sensitive to the position of the upper level low. A strong positional sensitivity is evident at 300 and 500 mb where a shift of the low center westward would provide stronger shear over the response region (Fig.~\ref{sens_gph_fhr18_shear}a,b). A shift of the central low at 700 mb southwestward would additionally provide stronger shear (Fig.~\ref{sens_gph_fhr18_shear}c) for storm organization into supercells. At 850 mb, a magnitude sensitivity is located over the low center and southward, indicating that the primary sensitivity is to the strength of the 850 mb low. These results are consistent with the position of the speed maxes at the individual levels seen in Fig.~\ref{hgts_fhr24} six hours later. The shift of the low centers correspond to the shift of the speed maxes westward, positioned more centrally over the response region. With these shifts, producing stronger winds aloft, the vertical wind shear within the lowest 6 km should increase.
+
+\tab Further analysis of shear sensitivities to temperatures and stability aloft shows an opposite signal to the previous response functions of MDBZ and W. Similarly to previous results, sensitivities to 700 mb temperature exist 24 hours prior to CI (Fig.~\ref{sens_700t_series_shear}). However, the sensitivity is primarily positive just west of the response region. This illustrates that a stronger capping inversion at 700 mb within the air region that is being advected into the response region will result in stronger shear at forecast hour 24. In other words, stronger stability in this region will promote stronger shear, consistent with less vertical mixing and stronger vertical gradient in wind speeds. This is further evident when considering additional levels above and beneath the capping inversion. At 300 mb, three hours prior to CI, a strong positive sensitivity is immediately above the 700 mb positive sensitivity (Fig.~\ref{sens_T_fhr21_shear}a,c). At 500 mb, a positive sensitivity may be expected but a negative sensitivity is analyzed (Fig.~\ref{sens_T_fhr21_shear}b). This is because the 6 km height is above the 500 mb level, thus a negative sensitivity at 500 mb and positive above at 300 mb is indicating stronger stability near the 6 km level, allowing stronger winds aloft to remain isolated from weaker winds at slightly lower levels. This signal is also evident with 850 mb sensitivity being negative (Fig.~\ref{sens_T_fhr21_shear}d).
+
+\tab Targeting fields highlight the temperature and SLP fields downstream of the response region at the surface just prior to CI (Fig.~\ref{obtar_surf_fhr21_shear}). Moisture fields at the surface exhibit targeting locations along the developing dryline in central Texas through 12 hours prior to initiation (Fig.~\ref{obtar_td2_series_shear}). Both the advecting regions and mesoscale boundaries are potential targeting regimes in this case indicating the importance of the ambient environment and mesoscale forcing to produce sufficient shear. 
+
+\tab Targeting for GPH measurements exists primarily to either side of the upper level low pressure center (Fig.~\ref{obtar_gph_fhr18_shear}). At the lowest level examined, targets are located in the base of the trough (Fig.~\ref{obtar_gph_fhr18_shear}d). When examining targets at upper level wind heights, patterns are less coherent vertically (Fig.~\ref{obtar_wind_fhr12_shear}). Targets are located just west of the response region at all levels besides 700 mb and chaotic signals are present throughout the domain on all levels elsewhere. It is possible that target locations are primarily located in regions of the respective speed maxes at each level. (BECAUSE OF PLOT WEIRDNESS, ANALYSIS IS CHAOTIC...TRYING TO RESOLVE THESE ISSUES)
+
+\subsection{Targeted Observations}
+
+\tab Similar experiments have been carried out for this case as has been previously mentioned in Chapter 2 and Section 3.2.4. Similar results are found...
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./figures/est_vs_act2013.pdf}\\
+  \caption{Estimated versus actual change in forecast metric variance for all metrics considered. Dashed line represents perfect correlation. }
+\label{est_vs_act2013}
+\end{figure}
+
+(ONLY MDBZ IS DONE FOR THIS CASE)
+
+(Discuss role of non-linearity, how far out we are able to target into the future)
+
+\chapter{Climatological Targeting}
+
+\tab Through analysis of both cases presented, climatological targeting regimes can be subjectively identified that if observed, would be valuable to convective forecasts over northern Texas. These locations may also identify possible regions that regular stationary observations could be placed to improve the current observational network, including both surface and upper air observations. For surface target variables, it was apparent that mesoscale boundary features, specifically the dryline itself, were important for all forecast metrics examined. Unfortunately, this feature is a non-stationary aspect of severe weather forecasting that can't be regularly targeted unless consistently in a similar location. However, with mobile targeting strategies, both with ground-based and upper-air platforms, the dryline can be targeted by using readily available current observations to locate it. Furthermore, the position of upper level low pressure systems and their accompanying forcing mechanisms were frequent occurrences in the targeting fields for the two cases presented. With regular upper-air analyses produced by modeling systems such as the Rapid Refresh, specific portions of the upper levels systems, like the southeast quadrant as was highlighted in these analyses, could be regularly targeted with mobile radiosondes. These features are also transient and not consistent from case to case thus improvements to the current radiosonde network could not be made on a permanent basis based on need for stationary and consistent positioning. This is true also of the target regions for temperatures aloft which won't necessarily be in the same position for every case. However, it did appear that for these two cases, where flow was westerly aloft and near southerly at the surface, temperature sensitivities aloft were consistently located over West Texas, west or southwest of the response region. It is possible this is a location where regular radiosondes, maybe every 3 hours, could have a great benefit to the forecast based on relatively similar locations from case to case. Further testing would need to be completed to elaborate on this possibility which is beyond the scope of this project. In this scenario, the current radiosonde network could be enhanced in West Texas. 
+
+\tab Targeting for surface temperature and dewpoint was also favored considerably to the southeast of the response region, where strong southeasterly winds drove moisture and higher temperatures from the Gulf of Mexico into central Texas. This result suggests regularly placed surface observations in southeast Texas could have a major effect on mesoscale forecasting of these CI events. More events would need to be analyzed with ESA to validate any repositioning of observational assets or the placement of new observing platforms in this area, however. This is a reasonable location to suggest for climatological targeting however as moisture return from the Gulf of Mexico plays a vital role on convective development along the dryline during the spring months in Texas. 
+
+\tab In general, it could be argued that although some of the highlighted features in the presented targeting analysis are transient and non-stationary, general locations around Texas could be identified that when observed, would generally benefit the forecast (Fig.~\ref{schematic}). In West Texas, as the upper level forcing and surface lows eject from the Rocky Mountains, radiosonde observations would greatly enhance the observational dataset aloft which is already sparse due to the low temporal frequency of observations. Furthermore, enhancements to the surface observational network southeast of a north-central Texas response region could benefit the forecast by addressing and capturing the surface flow and thermodynamic evolution better. These two "climatological" targeting regions would tackle the majority of sensitivities that were presented in the two cases previously. 
+
+\begin{figure}[!tb]
+  \centering
+  \noindent\includegraphics[width=35pc,angle=0]{./figures/climo_texas.pdf}\\
+  \caption{Locations where specific observational types could be taken to benefit CI forecasts.}
+\label{schematic}
+\end{figure}
+
+\chapter{Conclusions}
+
+\tab Two cases studies were presented to investigate the usefulness of ESA on the mesoscale and to apply observation targeting techniques to assess the utility of adaptively observing regions to improve dryline convection forecasts. Ensembles were generated with the use of a WRF-DART assimilation system with 50-members. Forecasts were generated at least 18 hours prior to CI with a cycling period of 24 hours on the finest two domains, and 48 hours on the coarsest. Convective parameters used for response functions were maximum composite reflectivity, maximum vertical velocity, and average vertical wind shear defined within the CI region determined from the ensemble forecasts of reflectivity. Positional and magnitude sensitivities were present for a large number of initial condition variables assessed. Sensitivities of forecasts to surface variables were primarily confined to mesoscale boundaries and air masses that were being advected into the response region. The dryline was a primary sensitivity focus for both cases, with moisture on either side being a critical component to CI development as well as its position. The dipole of sensitivity indicated that not only was a positional shift of the dryline significant for the forecast, but the position of the dipole at times located over the dryline, suggested the strength of the moisture gradient played a role in forecast evolution. Surface temperature sensitivities were consistently located to the southeast of the response region, collocated with moisture sensitivities being advected from the Gulf of Mexico. Additionally, forecast metrics appeared to be sensitive to stability of air masses that were being advected into the response region. This was manifested primarily to the west of the response region in West Texas. Positional and magnitude sensitivities were also evident in regard to upper level low centers with accompanying forcing in the form of shortwave troughs. Of note, sensitivity to upper air variables extended 12 to 20 hours prior to CI while surface sensitivities existed primarily in the 0-12 hr timeframe. This suggests that non-linearity may play a larger role closer to the surface, limiting the features from being spatially and temporally consistent throughout the forecast. 
+
+\tab The three metrics used also exhibited varying magnitudes in their sensitivities. MDBZ exhibited the largest sensitivities of all, followed by W and then vertical wind shear. W also exhibit very similar sensitivity signatures as MDBZ and thus may be considered redundant for use in a real-time operations mindset. Shear exhibit sensitivities that appear to be more related to storm mode, as would be expected, and less to storm intensity or formation. There are numerous other convective variables that could be used as forecast metrics and any implementation of real-time ESA operations would need to take into consideration a vast number of possible metrics that forecasters use when forecasting CI. The application of ESA and adaptively targeting regions to improve CI forecasts in real-time operations contains some hurdles that must be addressed. Further studies need to investigate the role that non-linear forecast evolution plays at shorter lead times. 
+
+\tab Target locations were discovered to exist in very similar locations to the sensitivity regions, both at the surface and aloft. The experiments carried out, to assimilate West Texas Mesonet observations, revealed that targeting on the mesoscale for forecasts too far into future may not be plausible. Expected changes to the forecast metric variances did not match that actual changes incurred. This is most likely due to the non-linear evolution of the forecast on the mesoscale. Previously, ESA has been primarily applied to synoptic scale phenomena where assumptions of linearity are more appropriate. As mentioned previously, sensitivity features were consistent temporally and spatially only within the time window of 0-12 hours prior to CI. Because the experiments were assimilating observations 18 or more hours prior to CI, the non-linear evolution of the forecast could have played a role in altering the actual changes in the forecast. Because the targeting values are gathered via linear statistical relationships, their application on a non-linear scale is no longer valid. Because the focus of this study was the application of ESA and targeting on mesoscales, experiments were not completed that would assess impacts of upper-air observations onto the forecast metrics. Such a study is planned for the future. 
+
+\tab Climatological targeting locations were subjectively determined from these two cases to exist in West Texas for upper-air, radiosonde observations and in southeast Texas for surface observations in relation to north-central Texas CI forecasts. The relative importance of these locales for CI forecasts in general has yet to be seen, as only two cases have been presented here. A larger subset of analyses on CI events must be completed to obtain a more comprehensive climatological assessment of target locations. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Backmatter -- Bibliography, appendices, etc.%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\backmatter
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Bibliography:  Use BibTeX if you like. Here we're just%
+%assuming that you're entering the items directly.     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\singlespacing
+\bibliography{thesis}
+
+%\begin{thebibliography}{99}   % use when bibtex is not
+
+%%%%%%%%%% EXAMPLE BIB ENTRY TYPED OUT WITHOUT BIBTEX %%%%%%%%%%%%%%
+%Ancell, B., and G. J. Hakim, 2007: \emph{Comparing adjoint- and ensemble-sensitivity analysis with applications to observation targeting}. Mon. Wea. Rev., 135, 411--4134.
+%\newline\newline
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\end{thebibliography}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%If there's only one appendix, just call it %
+%"Appendix".  Otherwise, use "Appendix A",  %
+%"Appendix B", etc.                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\chapter{Appendix A}
+
+%For example, put your computer code here:
+
+%\begin{singlespacing}
+%\begin{verbatim}
+%#include <iostream>
+
+%using namespace std;
+
+%int main(){
+%   cout << "Hello world!\n";
+%   return  0;
+%}
+%\end{verbatim}
+%\end{singlespacing}
+
+%\chapter{Appendix B}
+
+
+
+
+\end{document}
+
+
+
+
