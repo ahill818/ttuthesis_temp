@@ -1,29 +1,36 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%This documentclass loads the packages  %
+% Last Update: Aaron Hill, August 2014
+% 			TTU Atmospheric Science Department
+%			aaron.hill@ttu.edu
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This documentclass loads the packages  %
 %            setspace                   %
 % and                                   %
 %           fancyhdr.                   %
-%You may have to                        %
-%get these if your TeX distribution     %
-%doesn't have them.                     %
+% You may have to                        %
+% get these if your TeX distribution     %
+% doesn't have them.                     %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass{ttuthes2014}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Include any other add-on  packages you need:%
+% Include any other add-on  packages you need:%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{amsmath,amssymb,amsthm,graphicx}
 \usepackage{natbib}	       % use for citing notation
 \usepackage[nottoc,numbib]{tocbibind}  % include bibliography in table of contents
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%EDIT  (Running head--  REQUIRED)%
+% EDIT  (Running head--  REQUIRED)%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \rhead{Texas Tech University, \emph{FirstName Initial. LastName}, \emph{Month Year}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Uncomment if the grad school doesn't like the%
-%line under the  running head:                %
+% Uncomment if the grad school doesn't like the%
+% line under the  running head:                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand{\headrulewidth}{0pt}
 
@@ -52,10 +59,10 @@
 % \newtheorem{proposition}[theorem]{proposition}
 % \newtheorem{question}{Question}
 % \newtheorem{conjecture}{Conjecture}
-\newcommand{\tab}{\hspace*{2em}}  % tabbing
+\newcommand{\tab}{\hspace*{2em}}  % tabbing for paragraphs
 
-\bibliographystyle{ametsoc}   % use american meteorological society bibliography style
-\bibpunct{(}{)}{;}{a}{}{,}   % set punctuation for citing articles, books, etc.
+\bibliographystyle{ametsoc}   % use american meteorological society bibliography style (2014 version)
+\bibpunct{(}{)}{;}{a}{}{,}   % set punctuation for citing articles, books, etc. (AMS Style)
 
 \begin{document}
 
@@ -74,7 +81,7 @@ by\\[12pt]
 FirstName MiddleInitial. LastName, B.S.\\[12pt]   %Edit
 A Thesis\\[12pt]   % or Thesis
 In\\[12pt]
-Atmospheric Science\\[12pt]
+Atmospheric Science\\[12pt]  % Edit
 Submitted to the Graduate Faculty\\
 of Texas Tech University in\\
 Partial Fulfillment of\\
@@ -157,7 +164,7 @@ July, 2020     %Edit
 
 %%%%%%%% OPTIONAL CHAPTER FOR ABBREVIATIONS %%%%%%%%%%%%%
 \chapter{List of Abbreviations}
-
+e.g. \\
 F - Fahrenheit \\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -172,25 +179,29 @@ F - Fahrenheit \\
 
 "Intro text"
 
-\section{Ensemble Sensitivity Analysis}  % how to make a section
+\section{Section Title}  % how to make a section
 
 % figure
+\tab Make a figure like this
 \begin{figure}[!htb]
   \centering
-  \noindent\includegraphics[width=30pc,angle=0]{./figures/zhangpredict.jpg}\\
-  \caption{Linearly averaged 24 hr forecasts of reflectivity (dBZ, shaded) and SLP (mb, contoured). (Fig. 11, \citealt{MelhauserandZhang2012})}
-\label{zhangpredict}
+  \noindent\includegraphics[width=30pc,angle=0]{./example.pdf}\\
+  \caption{Example figure and caption}
+\label{example}
 \end{figure}
 
 % equation
+\tab Make an equation like this
 \begin{align}\label{J_var}
 	\sigma = \frac{1}{M-1} \delta\bf{J} \delta{\mathbf{J}}^T.
 \end{align}
 
-	\end{table} 
+% citing
+\tab Ways to Cite (there are more, google them) \\
+\citep{Ancell2013} \\
+\cite{Ancell2013} \\
 
-
-\subsection{Maximum Composite Reflectivity} % how to make a subsection
+\subsection{Subsection Title} % how to make a subsection
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -200,8 +211,7 @@ F - Fahrenheit \\
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Bibliography:  Use BibTeX if you like. Here we're just%
-%assuming that you're entering the items directly.     %
+%Bibliography:  Use BibTeX if you like. Or enter the items in directly with correct formatting. %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \singlespacing
