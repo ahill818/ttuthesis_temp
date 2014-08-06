@@ -26,7 +26,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % EDIT  (Running head--  REQUIRED)%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\rhead{Texas Tech University, \emph{FirstName Initial. LastName}, \emph{Month Year}}
+\rhead{Texas Tech University, \emph{FirstName MiddleInitial. LastName}, \emph{Month Year}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Uncomment if the grad school doesn't like the%
@@ -128,7 +128,7 @@ July, 2020     %Edit
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Acknowledgements}
 
-\tab "insert acknowledgements here"
+\tab "insert acknowledgement text here"
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %End of acknowledgements%
@@ -144,7 +144,7 @@ July, 2020     %Edit
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Abstract}
 
-\tab "insert abstract here"
+\tab "insert abstract text here"
 
 %%%%%%%%%%%%%%%%%
 %End of abstract%
@@ -190,12 +190,15 @@ F - Fahrenheit \\
 \label{example}
 \end{figure}
 
+\tab Reference a figure: Fig.~$\ref{example}$ \\
+
 % equation
 \tab Make an equation like this
 \begin{align}\label{J_var}
 	\sigma = \frac{1}{M-1} \delta\bf{J} \delta{\mathbf{J}}^T.
 \end{align}
 
+\tab Reference an equation: ($\ref{J_var}$) \\
 % citing
 \tab Ways to Cite (there are more, google them) \\
 \citep{Ancell2013} \\
@@ -216,6 +219,11 @@ F - Fahrenheit \\
 
 \singlespacing
 \bibliography{thesis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% NOTE: There are small issues with bibliography entry ordering. Edits have to be made in the *.bbl file to align multiple authors correctly
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 %\begin{thebibliography}{99}   % use when bibtex is not
 
