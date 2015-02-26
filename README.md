@@ -8,7 +8,7 @@ Required files:
 Bibliography style  (e.g. ametsoc.bst) 
 Fancy Header format (fancyhdr.sty)
 Spacing format      (setspace.sty) 
-Style template      (e.g. ttuthes2014.cls)
+Style template      (e.g. ttuthes2015.cls)
 
 Provided Examples:
 Thesis Template   (thesis_template.tex)
