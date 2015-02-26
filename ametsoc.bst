@@ -1,16 +1,14 @@
-%%  Updated 7 May 2014
 %%
-%% This is file `ametsoc_2014.bst',
+%% This is file `ametsoc_V2.bst',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
 %%
 %% merlin.mbs  (with options: `ay,nat,nm-rev1,jnrlst,nmlm,x8,m1,keyxyr,dt-beg,yr-com,yrp-col,note-yr,thtit-a,vol-2bf,vnum-sp,volp-com,pgsep-s,num-xser,numser,ser-vol,bkpg-x,pg-bk,pre-edn,agu-doi,doi,edparc,bkedcap,edby,edbyy,blk-tit,in-x,pp,ed,abr,ednx,ord,jabr,eprint,url,url-nt,em-it,nfss,')
 %% ----------------------------------------
-%% *** Bibliography style for all AMS Journals and BAMS ***
+%% *** Bibliography style for all AMS Journals  BAMS ***
 %% 
 %% Copyright 1994-2005 Patrick W Daly
-%% Updated 2014 Nicole Rietmann
  % ===============================================================
  % IMPORTANT NOTICE:
  % This bibliographic style (bst) file has been generated from one or
@@ -43,11 +41,11 @@
  % The \cite command functions as follows:
  %   \citet{key} ==>>                Jones et al. (1990)
  %   \citet*{key} ==>>               Jones, Baker, and Smith (1990)
- %   \citep{key} ==>>                (Jones et al. 1990)
+ %   \citep{key} ==>>                (Jones et al., 1990)
  %   \citep*{key} ==>>               (Jones, Baker, and Smith, 1990)
- %   \citep[chap. 2]{key} ==>>       (Jones et al. 1990, chap. 2)
- %   \citep[e.g.,][]{key} ==>>        (e.g., Jones et al. 1990)
- %   \citep[e.g.,][p. 32]{key} ==>>   (e.g., Jones et al., p. 32)
+ %   \citep[chap. 2]{key} ==>>       (Jones et al., 1990, chap. 2)
+ %   \citep[e.g.][]{key} ==>>        (e.g. Jones et al., 1990)
+ %   \citep[e.g.][p. 32]{key} ==>>   (e.g. Jones et al., p. 32)
  %   \citeauthor{key} ==>>           Jones et al.
  %   \citeauthor*{key} ==>>          Jones, Baker, and Smith
  %   \citeyear{key} ==>>             1990
@@ -218,9 +216,6 @@ FUNCTION {space.word}
 FUNCTION {bbl.and}
 { "and"}
 
-FUNCTION {bbl.cand}
-{ ", and"}
-
 FUNCTION {bbl.etal}
 { "et~al." }
 
@@ -273,10 +268,10 @@ FUNCTION {bbl.first}
 { "1st" }
 
 FUNCTION {bbl.second}
-{ "2nd" }
+{ "2d" }
 
 FUNCTION {bbl.third}
-{ "3rd" }
+{ "3d" }
 
 FUNCTION {bbl.fourth}
 { "4th" }
@@ -288,10 +283,10 @@ FUNCTION {bbl.st}
 { "st" }
 
 FUNCTION {bbl.nd}
-{ "nd" }
+{ "d" }
 
 FUNCTION {bbl.rd}
-{ "rd" }
+{ "d" }
 
 FUNCTION {bbl.th}
 { "th" }
@@ -382,8 +377,6 @@ MACRO {toplas} {"ACM Trans. Progr. Lang. Syst."}
 
 MACRO {tcs} {"Theor. Comput. Sci."}
 
-MACRO {mwr} {"Mon. Wea. Rev."}
-
 FUNCTION {bibinfo.check}
 { swap$
   duplicate$ missing$
@@ -464,9 +457,23 @@ FUNCTION {format.names}
           if$
           namesleft #1 >
             { ", " * t * }
-     { t "others" =
-  { ", and Coauthors" * }
-  { ", and " * t * }
+            {
+              s nameptr "{ll}" format.name$ duplicate$ "others" =
+                { 't := }
+                { pop$ }
+              if$
+              numnames #2 >
+                { "," * }
+                'skip$
+              if$
+              t "others" =
+                {
+                  " " * bbl.etal *
+                }
+                {
+                  bbl.and
+                  space.word * t *
+                }
               if$
             }
           if$
@@ -497,10 +504,25 @@ FUNCTION {format.names.ed}
       nameptr #1 >
         {
           namesleft #1 >
-          { ", " * t * }
-     { t "others" =
-  { " et~al." * }
-  { ", and " * t * }
+            { ", " * t * }
+            {
+              s nameptr "{ll}" format.name$ duplicate$ "others" =
+                { 't := }
+                { pop$ }
+              if$
+              numnames #2 >
+                { "," * }
+                'skip$
+              if$
+              t "others" =
+                {
+
+                  " " * bbl.etal *
+                }
+                {
+                  bbl.and
+                  space.word * t *
+                }
               if$
             }
           if$
@@ -533,14 +555,11 @@ FUNCTION {format.editors}
       " " *
       get.bbl.editor
       capitalize
-  % " " swap$ * "," *
+   "(" swap$ * ")" *
       *
     }
   if$
 }
-FUNCTION {format.conf.pages}
-{ pages "pages" bibinfo.check}
-
 FUNCTION {format.book.pages}
 { pages "pages" bibinfo.check
   duplicate$ empty$ 'skip$
@@ -621,8 +640,8 @@ FUNCTION {format.full.names}
                     { "," * }
                     'skip$
                   if$
-                  ", and "
-                   * t *
+                  bbl.and
+                  space.word * t *
                 }
               if$
             }
@@ -816,7 +835,7 @@ FUNCTION {format.number.series}
                 { bbl.number capitalize }
               if$
               number tie.or.space.prefix "number" bibinfo.check * *
-              "," * " " *
+              bbl.in space.word *
               series "series" bibinfo.check *
             }
           if$
@@ -1001,10 +1020,6 @@ FUNCTION {format.booktitle}
   booktitle "booktitle" bibinfo.check
   emphasize
 }
-FUNCTION {format.bktitle}
-{
-  booktitle "booktitle" bibinfo.check
-}
 FUNCTION {format.in.ed.booktitle}
 { format.booktitle duplicate$ empty$ 'skip$
     {
@@ -1121,7 +1136,7 @@ FUNCTION {book}
   author empty$
     { format.editors "author and editor" output.check
       editor format.key output
-      %add.blank
+      add.blank
     }
     { format.authors output.nonnull
       crossref missing$
@@ -1151,6 +1166,7 @@ FUNCTION {book}
   format.eprint output
   fin.entry
 }
+
 
 FUNCTION {booklet}
 { output.bibitem
@@ -1216,10 +1232,10 @@ FUNCTION {incollection}
   new.sentence
   crossref missing$
     { format.in.ed.booktitle "booktitle" output.check
-       format.bvolume output    
-       format.number.series output
+      format.publisher.address output
+      format.bvolume output
+      format.number.series output
       format.edition output
-      format.publisher.address output 
       format.chapter.pages output
     }
     { format.incoll.inproc.crossref output.nonnull
@@ -1263,37 +1279,7 @@ FUNCTION {inproceedings}
   format.eprint output
   fin.entry
 }
-FUNCTION {conference} 
-{ output.bibitem
-  format.authors "author" output.check
-  author format.key output
-  format.date "year" output.check
-  date.block
-  format.title "title" output.check
-  new.sentence
-  crossref missing$
-    { format.in.ed.booktitle "booktitle" output.check
-
-      publisher empty$
-        { format.organization.address output }
-        { format.publisher.address output
-          organization "organization" bibinfo.check output
-                  }
-      if$
-      format.bvolume output
-      howpublished "howpublished" bibinfo.check output
-      format.conf.pages output
-      format.number.series output
-    }
-    { format.incoll.inproc.crossref output.nonnull
-      format.conf.pages output
-    }
-  if$
-  format.doi output
-  format.note output
-  format.eprint output
-  fin.entry
-}
+FUNCTION {conference} { inproceedings }
 FUNCTION {manual}
 { output.bibitem
   format.authors output
@@ -1417,8 +1403,8 @@ FUNCTION {techreport}
   format.tr.number output.nonnull
   howpublished "howpublished" bibinfo.check output
   institution "institution" bibinfo.warn output
-address "address" bibinfo.check output
   format.book.pages output
+  address "address" bibinfo.check output
   new.sentence
   format.doi output
   format.note output
@@ -1721,8 +1707,6 @@ FUNCTION {begin.bib}
   write$ newline$
   "\providecommand{\url}[1]{\texttt{#1}}"
   write$ newline$
-%% "\renewcommand{\UrlFont}{\rmfamily}"
-%%  write$ newline$
   "\providecommand{\urlprefix}{URL }"
   write$ newline$
   "\expandafter\ifx\csname urlstyle\endcsname\relax"

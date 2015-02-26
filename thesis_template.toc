@@ -7,3 +7,4 @@
 \contentsline {section}{\numberline {1.1}Section Title}{1}
 \contentsline {subsection}{\numberline {1.1.1}Subsection Title}{2}
 \contentsline {chapter}{Bibliography}{3}
+\contentsline {chapter}{Appendix}{4}

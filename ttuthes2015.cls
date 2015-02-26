@@ -18,11 +18,11 @@
 % UPDATED BY AARON HILL ON JUNE 2014 %
 
 
-\def\filename{ttuthes2007}
-\def\fileversion{1.2}
-\def\filedate{2007/6/23} 
+\def\filename{ttuthes2015}
+\def\fileversion{2.0}
+\def\filedate{2015/2/27} 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ttuthes2007}[\filedate\space\fileversion\space%
+\ProvidesClass{ttuthes2015}[\filedate\space\fileversion\space%
        LaTeX document class.]
 
 \LoadClass[oneside,openany,12pt]{book}
