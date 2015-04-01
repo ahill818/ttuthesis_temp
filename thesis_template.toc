@@ -6,5 +6,14 @@
 \contentsline {chapter}{1. Introduction}{1}
 \contentsline {section}{\numberline {1.1}Section Title}{1}
 \contentsline {subsection}{\numberline {1.1.1}Subsection Title}{2}
+\contentsline {subsubsection}{\numberline {1.1.1.1}Subsubsection title}{2}
 \contentsline {chapter}{Bibliography}{3}
-\contentsline {chapter}{Appendix}{4}
+\setcounter {tocdepth}{0}
+\contentsline {chapter}{Appendix A}{4}
+\contentsline {section}{\numberline {A.1}First Section Title}{4}
+\contentsline {section}{\numberline {A.2}Second Section Title}{4}
+\contentsline {section}{\numberline {A.3}Third Section Title}{4}
+\contentsline {chapter}{Appendix B}{5}
+\contentsline {section}{\numberline {B.1}First Section Title}{5}
+\contentsline {section}{\numberline {B.2}Second Section Title}{5}
+\contentsline {section}{\numberline {B.3}Third Section Title}{5}

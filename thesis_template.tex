@@ -22,6 +22,7 @@
 \usepackage{amsmath,amssymb,amsthm,graphicx}
 \usepackage{natbib}	       % use for citing notation
 \usepackage[nottoc,numbib]{tocbibind}  % include bibliography in table of contents
+\usepackage[title,titletoc,header]{appendix}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % EDIT  (Running head--  REQUIRED)%
@@ -60,6 +61,10 @@
 % \newtheorem{question}{Question}
 % \newtheorem{conjecture}{Conjecture}
 \newcommand{\tab}{\hspace*{2em}}  % tabbing for paragraphs
+\newcommand{\hiddensection}[1]{
+	\stepcounter{section}
+	\section*{A.\arabic{section}\hspace{1em}{#1}}
+}
 
 \bibliographystyle{ametsoc}   % use american meteorological society bibliography style (2014 version)
 \bibpunct{(}{)}{;}{a}{}{,}   % set punctuation for citing articles, books, etc. (AMS Style)
@@ -177,6 +182,8 @@ F - Fahrenheit \\
 \mainmatter
 \chapter{Introduction}  % how to make a chapter
 
+%Type is: $\@chapapp$
+
 "Intro text"
 
 \section{Section Title}  % how to make a section
@@ -206,6 +213,7 @@ F - Fahrenheit \\
 
 \subsection{Subsection Title} % how to make a subsection
 
+\subsubsection{Subsubsection title}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Backmatter -- Bibliography, appendices, etc.%
@@ -239,10 +247,27 @@ F - Fahrenheit \\
 %"Appendix".  Otherwise, use "Appendix A",  %
 %"Appendix B", etc.                         %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Appendix}
 
-%For example, put your computer code here:
+\appendix
 
+\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}   % don't remove, prevents sections from being added to TOC
+\section*{Appendices} % don't remove sections are lettered in appendices
+
+\chapter{Appendix A}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{figure}{0}   % set figure, table, and section counters to 0 for correct numbering
+\setcounter{table}{0}
+\setcounter{section}{0}
+\renewcommand{\thefigure}{A.\arabic{figure}}
+\renewcommand{\thesection}{A.\arabic{section}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{First Section Title}
+\section{Second Section Title}
+\section{Third Section Title}
+
+% Some computer code
 \begin{singlespacing}
 \begin{verbatim}
 #include <iostream>
@@ -256,7 +281,36 @@ int main(){
 \end{verbatim}
 \end{singlespacing}
 
-%\chapter{Appendix B}
+
+
+\chapter{Appendix B}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\setcounter{section}{0}
+\renewcommand{\thefigure}{B.\arabic{figure}}
+\renewcommand{\thesection}{B.\arabic{section}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{First Section Title}
+\section{Second Section Title}
+\section{Third Section Title}
+
+% extra figures to include
+\begin{figure}[!htb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./example.pdf}\\
+  \caption{Example figure and caption}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./example.pdf}\\
+  \caption{Example figure and caption}
+\end{figure}
+
+% if additional appendices are needed, copy the beginning commands and change appropriate lettering to accommodate 
 
 
 \end{document}

@@ -15,11 +15,11 @@
 %school.  If you use it, *please* report any formatting     %
 %issues to robert.byerly@ttu.edu.                           %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% UPDATED BY AARON HILL ON JUNE 2014 %
+% UPDATED BY AARON HILL IN MARCH 2015 %
 
 
 \def\filename{ttuthes2015}
-\def\fileversion{2.0}
+\def\fileversion{3.0}
 \def\filedate{2015/2/27} 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{ttuthes2015}[\filedate\space\fileversion\space%
@@ -102,6 +102,46 @@
    \setcounter{page}{2}             %% Start on the second page 
 }
 
+%\def\@makechapterhead#1{%
+%	\ \vspace*{-18pt}%
+%	{\parindent 0pt
+%	 \begin{center}
+%	 	\baselineskip=18.5pt
+%		\ifnum \c@secnumdepth > \m@ne
+%			\ifx\@chapapp\appfl@g
+%				\large{\em Appendix \thechapter.\ \ #1}
+%			\else
+%				\large{\em CHAPTER \thechapter.\ \par\nobreak #1}
+%			\fi
+%		\else
+%			\large{\em #1}
+%	\end{center}
+%	\par \nobreak
+%}}
+
+
+%\def\@makechapterhead#1{%
+%	\vspace*{-20 \p@}%
+%	{\parindent \z@ \centering \normalfont
+%	\ifnum \c@secnumdepth >\m@ne
+%		\if\@chapapp\appfl@g
+%			\bf
+%			\MakeUpperCase
+%			\@chapapp\space #1
+%			\par\nobreak
+%		\else\if@mainmatter
+%			\bf
+%   		      	\MakeUppercase
+%      		   	\@chapapp\space \thechapter
+%       	 		\par\nobreak
+%%        \vskip 20\p@
+%      	\fi\fi\fi
+%    	\interlinepenalty\@M
+%	\bf
+%     	\MakeUppercase{#1} \par\nobreak
+%    	\vskip 20\p@
+%}}
+
 
 \def\@makechapterhead#1{%
   \vspace*{-20 \p@}%
@@ -121,6 +161,8 @@
     \vskip 20\p@
   }}
 
+
+
 \def\@makeschapterhead#1{%
   \vspace*{-20 \p@}%
   {\parindent \z@ \centering
@@ -133,13 +175,11 @@
   }}
 
 
-
-
  \renewcommand*\l@part{\@dottedtocline{0}{0em}{1.5em}}
  \renewcommand*\l@chapter{\@dottedtocline{0}{1.5em}{2.75em}}
  \renewcommand*\l@section{\@dottedtocline{1}{4em}{2.75em}}
  \renewcommand*\l@subsection{\@dottedtocline{2}{5.75em}{2.75em}}
-
+ \renewcommand*\l@subsubsection{\@dottedtocline{3}{7.50em}{4em}}
 
 \def\numberlinetwo#1{\advance\hangindent\@tempdima
   \hbox to\@tempdima{\hfil #1\enspace}}
@@ -155,13 +195,10 @@
 %                         \addcontentsline{toc}{chapter}{\arabic{chapter}. #1}%
                          \addcontentsline{toc}{chapter}%
 %                         {\@chapapp\space\thechapter. #1}%
-                         {\thechapter. #1}%
+                         {\thechapter. #1}%	
                        \else
-                         \addcontentsline{toc}{chapter}{#1}%
+                         \addcontentsline{toc}{chapter}{#2}%
                        \fi
-                    \else
-                      \addcontentsline{toc}{chapter}{#1}%
-                    \fi
                     \chaptermark{#1}%
 %                    \addtocontents{lof}{\protect\addvspace{10\p@}}%
 %                    \addtocontents{lot}{\protect\addvspace{10\p@}}%
@@ -170,7 +207,18 @@
                     \else
                       \@makechapterhead{#2}%
                       \@afterheading
-                    \fi}
+                    \fi
+                    }
+
+%                    \if@twocolumn
+%                      \@topnewpage[\@makechapterhead{#2}]%
+%                    \else
+%                      \@makechapterhead{#2}%
+%                      \@afterheading
+%                    \fi
+%                    }
+
+
 
 \renewcommand\contentsname{Table of Contents}
 \renewcommand\listfigurename{List of Figures}
@@ -188,8 +236,8 @@
                      \global\@topnum\z@
                     \@afterindenttrue
                     \secdef\@chapter\@schapter}
-
-\renewcommand\section{\@startsection {section}{1}{\z@}%
+                    
+\renewcommand\section{\@startsection{section}{1}{\z@}%
                                    {3.5ex \@plus 1ex \@minus .2ex}%
                                    {.3ex \@plus.2ex}%
                                    {\normalfont\normalsize\bf
@@ -198,20 +246,24 @@
                                      {3.25ex\@plus 1ex \@minus .2ex}%
                                      {.2ex \@plus .2ex}%
                                      {\normalfont\normalsize
-                                     \raggedright\noindent}}
+                                     \raggedright\noindent
+                                     }}
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
                                      {3.25ex\@plus 1ex \@minus .2ex}%
                                      {.2ex \@plus .2ex}%
-                                     {\normalfont\normalsize
-                                     \raggedright\noindent}}
+                                     {\normalfont\normalsize\bf\noindent
+                                     \raggedright
+                                     }}
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
                                     {3.25ex \@plus1ex \@minus.2ex}%
                                     {-1em}%
-                                    {\normalfont\normalsize}}
+                                    {\normalfont\normalsize
+                                    }}
 \renewcommand\subparagraph{\@startsection{subparagraph}{5}{\parindent}%
                                        {3.25ex \@plus1ex \@minus .2ex}%
                                        {-1em}%
-                                      {\normalfont\normalsize}}
+                                      {\normalfont\normalsize
+                                      }}
 
 \renewcommand\listoffigures{%
     \if@twocolumn
