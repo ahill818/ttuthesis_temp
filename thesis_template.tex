@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Last Update: Aaron Hill, August 2014
+% Last Update: Aaron Hill, April 2015
 % 			TTU Atmospheric Science Department
 %			aaron.hill@ttu.edu
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -61,10 +61,6 @@
 % \newtheorem{question}{Question}
 % \newtheorem{conjecture}{Conjecture}
 \newcommand{\tab}{\hspace*{2em}}  % tabbing for paragraphs
-\newcommand{\hiddensection}[1]{
-	\stepcounter{section}
-	\section*{A.\arabic{section}\hspace{1em}{#1}}
-}
 
 \bibliographystyle{ametsoc}   % use american meteorological society bibliography style (2014 version)
 \bibpunct{(}{)}{;}{a}{}{,}   % set punctuation for citing articles, books, etc. (AMS Style)
@@ -251,7 +247,7 @@ F - Fahrenheit \\
 \appendix
 
 \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}   % don't remove, prevents sections from being added to TOC
-\section*{Appendices} % don't remove sections are lettered in appendices
+\section*{Appendices} % don't remove, sections are lettered in appendices
 
 \chapter{Appendix A}
 

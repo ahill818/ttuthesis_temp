@@ -1,26 +1,29 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Thesis style to be used in conjunction with the companion %
 % "thesis_template.tex".  It is intended to format a thesis %
-% or dissertation in accordance with the current (2007)     %
+% or dissertation in accordance with the current (2015)     %
 % Thesis/Dissertation Guidelines from the Graduate School   %
 % at Texas Tech University                                  %
 % (http://www.depts.ttu.edu/gradschool/current/thd.php).    %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Report any problems to Robert Byerly, Department of       %
-% Mathematics and Statistics, Texas Tech University         %
+% FORMERLY: Report any problems to Robert Byerly, Department% 
+% of Mathematics and Statistics, Texas Tech University      %
 % (robert.byerly@ttu.edu)                                   %
+% CURRENT: Report any problems to Aaron Hill, Department of %
+% Geosciences, Texas Tech University                        %
+% (aaron.hill@ttu.edu                                       %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%This has *not* yet been tested "under fire", i.e., on a    %
-%dissertation that has actually been approved by the grad   %
-%school.  If you use it, *please* report any formatting     %
-%issues to robert.byerly@ttu.edu.                           %
+% This has been tested but not rigorously on theses that    %
+% have actually been approved by the grad school.           %
+% If you use it, *please* report any formatting             %
+% issues to robert.byerly@ttu.edu or aaron.hill@ttu.edu     %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% UPDATED BY AARON HILL IN MARCH 2015 %
+% UPDATED BY AARON HILL IN APRIL 2015 %
 
 
 \def\filename{ttuthes2015}
 \def\fileversion{3.0}
-\def\filedate{2015/2/27} 
+\def\filedate{2015/4/02} 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{ttuthes2015}[\filedate\space\fileversion\space%
        LaTeX document class.]
