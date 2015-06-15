@@ -207,6 +207,30 @@ F - Fahrenheit \\
 \citep{Ancell2013} \\
 \cite{Ancell2013} \\
 
+\tab Make a simple table like this
+\begin{table}[!h]   % makes it at the instance it is created ! - instantly, h- here, b-bottom, t-top
+\caption{Model Parameterizations Used} 
+\centering % used for centering table 
+\scalebox{0.8}{
+\begin{tabular}{c c} % centered columns (1 column) 
+\\ [0.5ex] \hline
+Parameterization Types & Schemes Used \\ [0.5ex] % inserts table 
+%heading 
+\hline % inserts single horizontal line 
+Boundary Layer & Yonsei University \\ % inserting body of the table 
+Cumulus* & Kain-Fritsch \\ % inserting body of the table 
+Land Surface & Noah LSM \\ 
+Long-Wave Radiation & Rapid Radiative Transfer Model  \\ 
+Short-Wave Radiation & Dudhia \\ 
+Microphysics & Thompson \\ [1ex] 
+\hline %inserts single line 
+\end{tabular} 
+} \\
+*Convection is explicitly resolved on the third domain
+\label{params} % is used to refer this table in the text 
+\end{table} 
+
+
 \subsection{Subsection Title} % how to make a subsection
 
 \subsubsection{Subsubsection title}
@@ -244,70 +268,70 @@ F - Fahrenheit \\
 %"Appendix B", etc.                         %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\appendix
-
-\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}   % don't remove, prevents sections from being added to TOC
-\section*{Appendices} % don't remove, sections are lettered in appendices
-
-\chapter{Appendix A}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\setcounter{figure}{0}   % set figure, table, and section counters to 0 for correct numbering
-\setcounter{table}{0}
-\setcounter{section}{0}
-\renewcommand{\thefigure}{A.\arabic{figure}}
-\renewcommand{\thesection}{A.\arabic{section}}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{First Section Title}
-\section{Second Section Title}
-\section{Third Section Title}
-
-% Some computer code
-\begin{singlespacing}
-\begin{verbatim}
-#include <iostream>
-
-using namespace std;
-
-int main(){
-   cout << "Hello world!\n";
-   return  0;
-}
-\end{verbatim}
-\end{singlespacing}
-
-
-
-\chapter{Appendix B}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\setcounter{figure}{0}
-\setcounter{table}{0}
-\setcounter{section}{0}
-\renewcommand{\thefigure}{B.\arabic{figure}}
-\renewcommand{\thesection}{B.\arabic{section}}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{First Section Title}
-\section{Second Section Title}
-\section{Third Section Title}
-
-% extra figures to include
-\begin{figure}[!htb]
-  \centering
-  \noindent\includegraphics[width=30pc,angle=0]{./example.pdf}\\
-  \caption{Example figure and caption}
-\end{figure}
-
-\begin{figure}[!htb]
-  \centering
-  \noindent\includegraphics[width=30pc,angle=0]{./example.pdf}\\
-  \caption{Example figure and caption}
-\end{figure}
-
-% if additional appendices are needed, copy the beginning commands and change appropriate lettering to accommodate 
-
+%\appendix
+%
+%\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}   % don't remove, prevents sections from being added to TOC
+%\section*{Appendices} % don't remove, sections are lettered in appendices
+%
+%\chapter{Appendix A}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\setcounter{figure}{0}   % set figure, table, and section counters to 0 for correct numbering
+%\setcounter{table}{0}
+%\setcounter{section}{0}
+%\renewcommand{\thefigure}{A.\arabic{figure}}
+%\renewcommand{\thesection}{A.\arabic{section}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\section{First Section Title}
+%\section{Second Section Title}
+%\section{Third Section Title}
+%
+%% Some computer code
+%\begin{singlespacing}
+%\begin{verbatim}
+%#include <iostream>
+%
+%using namespace std;
+%
+%int main(){
+%   cout << "Hello world!\n";
+%   return  0;
+%}
+%\end{verbatim}
+%\end{singlespacing}
+%
+%
+%
+%\chapter{Appendix B}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\setcounter{figure}{0}
+%\setcounter{table}{0}
+%\setcounter{section}{0}
+%\renewcommand{\thefigure}{B.\arabic{figure}}
+%\renewcommand{\thesection}{B.\arabic{section}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\section{First Section Title}
+%\section{Second Section Title}
+%\section{Third Section Title}
+%
+%% extra figures to include
+%\begin{figure}[!htb]
+%  \centering
+%  \noindent\includegraphics[width=30pc,angle=0]{./example.pdf}\\
+%  \caption{Example figure and caption}
+%\end{figure}
+%
+%\begin{figure}[!htb]
+%  \centering
+%  \noindent\includegraphics[width=30pc,angle=0]{./example.pdf}\\
+%  \caption{Example figure and caption}
+%\end{figure}
+%
+%% if additional appendices are needed, copy the beginning commands and change appropriate lettering to accommodate 
+%
 
 \end{document}
 
