@@ -24,6 +24,7 @@
 \usepackage[nottoc,numbib]{tocbibind}  % include bibliography in table of contents
 \usepackage[title,titletoc,header]{appendix}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % EDIT  (Running head--  REQUIRED)%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -35,6 +36,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand{\headrulewidth}{0pt}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Following commands add blank space underneath entries in the List of Figures and List of    %
+% Tables, per the new grad school requirements. Entries with multiple lines are single spaced. %
+% Users will need to add "\addLOFspace" or "\addLOTspace" after their figure or table, respectively. %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\addLOFspace}[1][2ex]{\addtocontents{lof}{\protect\addvspace{#1}}}
+\newcommand{\addLOTspace}[1][2ex]{\addtocontents{lot}{\protect\addvspace{#1}}}
+\newcommand{\addTOCspace}[1][2ex]{\addtocontents{toc}{\protect\addvspace{#1}}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Spacing -- Do you want double or one-and-a-half?%
@@ -66,8 +75,6 @@
 \bibpunct{(}{)}{;}{a}{}{,}   % set punctuation for citing articles, books, etc. (AMS Style)
 
 \begin{document}
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %TITLE PAGE -- Edit the spacing commands after each \\ %
@@ -128,8 +135,9 @@ July, 2020     %Edit
 %if not  wanted             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Acknowledgements}
-
+\addTOCspace
 \tab "insert acknowledgement text here"
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %End of acknowledgements%
@@ -138,14 +146,17 @@ July, 2020     %Edit
 %%%%%%%%%%%%%%%%%%%
 %Table of Contents%
 %%%%%%%%%%%%%%%%%%%
+\singlespacing
 \tableofcontents
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Abstract -- Delete or comment out if not wanted:%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\doublespacing
 \chapter{Abstract}
-
+\addTOCspace
 \tab "insert abstract text here"
+
 
 %%%%%%%%%%%%%%%%%
 %End of abstract%
@@ -153,20 +164,29 @@ July, 2020     %Edit
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%List of tables and list of figures %
-%Delete or comment out if not needed%
+% List of tables and list of figures %
+% Delete or comment out if not needed %
+% Single spacing is needed to get the blank space correct. %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\singlespacing
 \listoftables
+\addTOCspace
 
 \listoffigures
+\addTOCspace
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %End of lists of tables and figures%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%% OPTIONAL CHAPTER FOR ABBREVIATIONS %%%%%%%%%%%%%
+\doublespacing
 \chapter{List of Abbreviations}
+\addTOCspace
 e.g. \\
 F - Fahrenheit \\
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -176,24 +196,36 @@ F - Fahrenheit \\
 %%%%%%%%%%%%%%%%%%%%%%%%
 
 \mainmatter
+
 \chapter{Introduction}  % how to make a chapter
+\addTOCspace
 
 %Type is: $\@chapapp$
 
 "Intro text"
 
 \section{Section Title}  % how to make a section
+\addTOCspace
 
 % figure
 \tab Make a figure like this
 \begin{figure}[!htb]
   \centering
   \noindent\includegraphics[width=30pc,angle=0]{./example.pdf}\\
-  \caption{Example figure and caption}
+     \caption{Example figure caption that is very long and has wrap around text in the list of figures that needs to be single spaced while each individual entry in the list of figures needs to be double spaced.}
 \label{example}
+\addLOFspace
 \end{figure}
 
 \tab Reference a figure: Fig.~$\ref{example}$ \\
+
+\tab Make a figure like this
+\begin{figure}[!htb]
+  \centering
+  \noindent\includegraphics[width=30pc,angle=0]{./example.pdf}\\
+  \caption{Example figure and caption}
+\label{example2}
+\end{figure}
 
 % equation
 \tab Make an equation like this
@@ -232,8 +264,10 @@ Microphysics & Thompson \\ [1ex]
 
 
 \subsection{Subsection Title} % how to make a subsection
+\addTOCspace
 
 \subsubsection{Subsubsection title}
+\addTOCspace
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Backmatter -- Bibliography, appendices, etc.%

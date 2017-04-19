@@ -11,7 +11,7 @@
 % (robert.byerly@ttu.edu)                                   %
 % CURRENT: Report any problems to Aaron Hill, Department of %
 % Geosciences, Texas Tech University                        %
-% (aaron.hill@ttu.edu                                       %
+% (aaron.hill@ttu.edu)                                       %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % This has been tested but not rigorously on theses that    %
 % have actually been approved by the grad school.           %
@@ -146,6 +146,7 @@
 %}}
 
 
+% Alter the heading displacement for all page titles except LOF and LOT pages (see below)
 \def\@makechapterhead#1{%
   \vspace*{-20 \p@}%
   {\parindent \z@ \centering \normalfont
@@ -165,9 +166,9 @@
   }}
 
 
-
+%%% Alter the heading displacement of "LIst of Figures", "List of Tables", and "Table of Content" pages
 \def\@makeschapterhead#1{%
-  \vspace*{-20 \p@}%
+  \vspace*{-10 \p@}%
   {\parindent \z@ \centering
     \normalfont %originally \normalfont
     \interlinepenalty\@M
@@ -201,10 +202,13 @@
                          {\thechapter. #1}%	
                        \else
                          \addcontentsline{toc}{chapter}{#2}%
+
                        \fi
                     \chaptermark{#1}%
-%                    \addtocontents{lof}{\protect\addvspace{10\p@}}%
-%                    \addtocontents{lot}{\protect\addvspace{10\p@}}%
+                    %\addtocontents{lof}{\protect\addvspace{2ex}}%
+                    %\addtocontents{lot}{\protect\addvspace{2ex}}%
+                    %\addtocontents{toc}{\protect\addvspace{2ex}}
+
                     \if@twocolumn
                       \@topnewpage[\@makechapterhead{#2}]%
                     \else
@@ -221,8 +225,6 @@
 %                    \fi
 %                    }
 
-
-
 \renewcommand\contentsname{Table of Contents}
 \renewcommand\listfigurename{List of Figures}
 \renewcommand\listtablename{List of Tables}
@@ -238,7 +240,8 @@
 \renewcommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi
                      \global\@topnum\z@
                     \@afterindenttrue
-                    \secdef\@chapter\@schapter}
+                    \secdef\@chapter\@schapter
+                    }
                     
 \renewcommand\section{\@startsection{section}{1}{\z@}%
                                    {3.5ex \@plus 1ex \@minus .2ex}%
@@ -276,11 +279,14 @@
     \fi
     \chapter*{\listfigurename}%
     \addcontentsline{toc}{chapter}{\listfigurename}
-      \@mkboth{\MakeUppercase\listfigurename}%
+      \@mkboth{%
+              \MakeUppercase\listfigurename}%
               {\MakeUppercase\listfigurename}%
-    \@starttoc{lof}%
+    \@starttoc{lof}%    
     \if@restonecol\twocolumn\fi
+    
     }
+
 
 \renewcommand\listoftables{%
     \if@twocolumn
