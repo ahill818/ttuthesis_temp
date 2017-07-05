@@ -18,7 +18,7 @@
 % If you use it, *please* report any formatting             %
 % issues to robert.byerly@ttu.edu or aaron.hill@ttu.edu     %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% UPDATED BY AARON HILL IN APRIL 2015 %
+% UPDATED BY AARON HILL IN JULY 2017 %
 
 
 \def\filename{ttuthes2015}
@@ -78,12 +78,12 @@
 %How about a period?
 \long\def\@makecaption#1#2{%
   \vskip\abovecaptionskip
-  \sbox\@tempboxa{#1: #2}%
+  \sbox\@tempboxa{#1. #2}%
   \ifdim \wd\@tempboxa >\hsize
     #1. #2\par
   \else
     \global \@minipagefalse
-    \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
+    \hb@xt@\hsize{\box\@tempboxa}%
   \fi
   \vskip\belowcaptionskip}
 
