@@ -24,11 +24,17 @@
 \usepackage[nottoc,numbib]{tocbibind}  % include bibliography in table of contents
 \usepackage[title,titletoc,header]{appendix}
 
+\usepackage{titlesec}
+\setcounter{tocdepth}{3}
+
+\titleformat{\section}{\bfseries\large}{\arabic{chapter}.\arabic{section}}{1em}{}
+\titleformat{\subsection}{\normalsize}{\arabic{chapter}.\arabic{section}.\arabic{subsection}}{1em}{}
+\titleformat{\subsubsection}{\itshape\normalsize}{\arabic{chapter}.\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}{1em}{}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % EDIT  (Running head--  REQUIRED)%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\rhead{Texas Tech University, \emph{FirstName MiddleInitial. LastName}, \emph{Month Year}}
+\rhead{Texas Tech University, \emph{FirstName MiddleInitial. LastName}, Month Year}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Uncomment if the grad school doesn't like the%

@@ -1,1 +1,3 @@
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Example figure and caption}}{1}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Example figure caption that is very long and has wrap around text in the list of figures that needs to be single spaced while each individual entry in the list of figures needs to be double spaced.}}{1}
+\addvspace {2ex}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Example figure and caption}}{2}
