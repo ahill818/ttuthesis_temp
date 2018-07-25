@@ -1,5 +1,5 @@
 By: Aaron Hill, aaron.hill@ttu.edu
-LAST UPDATED APRIL 1, 2015
+LAST UPDATED July 25th, 2018
 
 Texas Tech University LaTeX MS Thesis Template (for Atmospheric Science majors). 
 Adapted template provided by online distribution from Statistics
