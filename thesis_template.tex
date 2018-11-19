@@ -27,7 +27,7 @@
 \usepackage{titlesec}
 \setcounter{tocdepth}{3}
 
-\titleformat{\section}{\bfseries\large}{\arabic{chapter}.\arabic{section}}{1em}{}
+\titleformat{\section}{\bfseries\normalsize}{\arabic{chapter}.\arabic{section}}{1em}{}
 \titleformat{\subsection}{\normalsize}{\arabic{chapter}.\arabic{section}.\arabic{subsection}}{1em}{}
 \titleformat{\subsubsection}{\itshape\normalsize}{\arabic{chapter}.\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}{1em}{}
 
@@ -122,7 +122,14 @@ July, 2020     %Edit
 %Copyright page -- delete or comment out if not needed%
 %usage: \copyrightpage{year of appearance}{Name}      %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\copyrightpage{2020}{FirstName MiddleInitial. LastName} %Name should be same as on
+%\copyrightpage{2020}{FirstName MiddleInitial. LastName} %Name should be same as on
+\begin{center}
+\vspace*{\fill}
+Copyright 2020, John H. Doe
+\vspace*{\fill}
+\end{center}
+
+
 %title page
 %%%%%%%%%%%%%%%%%%%%%%%%
 %\end of copyright page%
