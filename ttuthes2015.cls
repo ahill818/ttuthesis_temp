@@ -67,10 +67,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\copyrightpage}[2]{%
 \thispagestyle{empty}
-\vbox to \textheight{
-\vfill
-\hfil Copyright #1, #2\hfil
-\vfill}
+
+\begin{center}
+\vspace*{\fill}
+Copyright #1, #2
+\vspace*{\fill}
+\end{center}
 }
 
 %Graduate school doesn't want a colon after
@@ -336,7 +338,6 @@
 
 
 \endinput
-
 
 
 
