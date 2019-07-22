@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  25 JUL 2018 14:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  22 JUL 2019 15:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -160,6 +160,22 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count101
 )
+(/usr/local/texlive/2017/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2011/09/28 v3.5.2 Customized lists
+\labelindent=\skip60
+\enit@outerparindent=\dimen114
+\enit@toks=\toks26
+\enit@inbox=\box28
+\enitdp@description=\count102
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/tools/bm.sty
+Package: bm 2017/01/16 v1.2c Bold Symbol Support (DPC/FMi)
+\symboldoperators=\mathgroup6
+\symboldletters=\mathgroup7
+\symboldsymbols=\mathgroup8
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 141.
+LaTeX Info: Redefining \bm on input line 207.
+)
 (/usr/local/texlive/2017/texmf-dist/tex/latex/tocbibind/tocbibind.sty
 Package: tocbibind 2010/10/13 v1.5k extra ToC listings
 Package tocbibind Info: The document has chapter divisions on input line 50.
@@ -169,51 +185,58 @@ Package tocbibind Note: Using chapter style headings, unless overridden.
 
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/appendix/appendix.sty
 Package: appendix 2009/09/02 v1.2b extra appendix facilities
-\c@@pps=\count102
-\c@@ppsavesec=\count103
-\c@@ppsaveapp=\count104
+\c@@pps=\count103
+\c@@ppsavesec=\count104
+\c@@ppsaveapp=\count105
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2016/11/25 v2.2 Span multiple rows of a table
+\multirow@colwidth=\skip61
+\multirow@cntb=\count106
+\multirow@dima=\skip62
+\bigstrutjot=\dimen115
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/titlesec/titlesec.sty
 Package: titlesec 2016/03/21 v2.10.2 Sectioning titles
-\ttl@box=\box28
-\beforetitleunit=\skip60
-\aftertitleunit=\skip61
-\ttl@plus=\dimen114
-\ttl@minus=\dimen115
-\ttl@toksa=\toks26
-\titlewidth=\dimen116
-\titlewidthlast=\dimen117
-\titlewidthfirst=\dimen118
+\ttl@box=\box29
+\beforetitleunit=\skip63
+\aftertitleunit=\skip64
+\ttl@plus=\dimen116
+\ttl@minus=\dimen117
+\ttl@toksa=\toks27
+\titlewidth=\dimen118
+\titlewidthlast=\dimen119
+\titlewidthfirst=\dimen120
 )
 (./thesis_template.aux)
 \openout1 = `thesis_template.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
 
 (/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count105
-\scratchdimen=\dimen119
-\scratchbox=\box29
-\nofMPsegments=\count106
-\nofMParguments=\count107
-\everyMPshowfont=\toks27
-\MPscratchCnt=\count108
-\MPscratchDim=\dimen120
-\MPnumerator=\count109
-\makeMPintoPDFobject=\count110
-\everyMPtoPDFconversion=\toks28
+\scratchcounter=\count107
+\scratchdimen=\dimen121
+\scratchbox=\box30
+\nofMPsegments=\count108
+\nofMParguments=\count109
+\everyMPshowfont=\toks28
+\MPscratchCnt=\count110
+\MPscratchDim=\dimen122
+\MPnumerator=\count111
+\makeMPintoPDFobject=\count112
+\everyMPtoPDFconversion=\toks29
 ) (/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -301,50 +324,50 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
  [6
 
-] [7
-
 ]
 Chapter 1.
-<./example.pdf, id=31, 433.62pt x 289.08pt>
+<./example.pdf, id=28, 433.62pt x 289.08pt>
 File: ./example.pdf Graphic file (type pdf)
  <use ./example.pdf>
-Package pdftex.def Info: ./example.pdf used on input line 220.
+Package pdftex.def Info: ./example.pdf used on input line 246.
 (pdftex.def)             Requested size: 360.0pt x 240.01132pt.
 File: ./example.pdf Graphic file (type pdf)
 
 <use ./example.pdf>
-Package pdftex.def Info: ./example.pdf used on input line 231.
+Package pdftex.def Info: ./example.pdf used on input line 257.
 (pdftex.def)             Requested size: 360.0pt x 240.01132pt.
 
-Underfull \hbox (badness 10000) detected at line 232
+Underfull \hbox (badness 10000) detected at line 258
 []
  []
+
+
+Underfull \hbox (badness 10000) detected at line 276
+[]
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [1
 
 
- <./example.pdf>]
-Underfull \hbox (badness 10000) detected at line 250
-[]
- []
-
-[2] (./thesis_template.bbl) [3
+ <./example.pdf>] [2] (./thesis_template.bbl) [3
 
 
 ] (./thesis_template.aux) )
 (\end occurred when \iftrue on line 1 was incomplete)
-(\end occurred when \ifnum on line 206 was incomplete)
+(\end occurred when \ifnum on line 232 was incomplete)
 (\end occurred when \ifnum on line 191 was incomplete)
-(\end occurred when \ifnum on line 162 was incomplete)
-(\end occurred when \ifnum on line 143 was incomplete) 
+(\end occurred when \ifnum on line 172 was incomplete) 
 Here is how much of TeX's memory you used:
- 3459 strings out of 492995
- 45119 string characters out of 6132704
- 109982 words of memory out of 5000000
- 6945 multiletter control sequences out of 15000+600000
- 9867 words of font info for 37 fonts, out of 8000000 for 9000
+ 3861 strings out of 492995
+ 51433 string characters out of 6132704
+ 119792 words of memory out of 5000000
+ 7329 multiletter control sequences out of 15000+600000
+ 11401 words of font info for 42 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,11n,45p,319b,245s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 39i,10n,45p,319b,245s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2017/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2017/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2017/tex
@@ -352,10 +375,10 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2017/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2017/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on thesis_template.pdf (11 pages, 85872 bytes).
+Output written on thesis_template.pdf (10 pages, 86074 bytes).
 PDF statistics:
- 101 PDF objects out of 1000 (max. 8388607)
- 49 compressed objects within 1 object stream
+ 98 PDF objects out of 1000 (max. 8388607)
+ 47 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -6,8 +6,6 @@
 \addvspace {2ex}
 \contentsline {chapter}{List of Figures}{vi}
 \addvspace {2ex}
-\contentsline {chapter}{List of Abbreviations}{vii}
-\addvspace {2ex}
 \contentsline {chapter}{1. Introduction}{1}
 \addvspace {2ex}
 \contentsline {section}{\numberline {1.1}Section Title}{1}
